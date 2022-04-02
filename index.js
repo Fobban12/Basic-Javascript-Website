@@ -1,6 +1,13 @@
+const open = require('open');
+open('http://localhost:3000/')
+
+
 const express = require('express');
 const path = require('path');
 const app = express();
+
+
+
 
 const port = 3000;
 
