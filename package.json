@@ -3,8 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  
+  "engines" : { 
+    "npm" : ">=7.0.0",
+    "node" : ">=16.14.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+    
   },
   "keywords": [],
   "author": "",
@@ -14,5 +20,16 @@
     "express": "^4.17.3",
     "mysql": "^2.18.1",
     "open": "^8.4.0"
-  }
+  },
+
+  "terminal.integrated.profiles.windows": {
+     "PowerShell": {
+     "source": "PowerShell",
+     "icon": "terminal-powershell",
+     "args": ["-ExecutionPolicy", "Bypass"]
+     }
+     },
+    "terminal.integrated.defaultProfile.windows": "PowerShell"
+    
+  
 }
