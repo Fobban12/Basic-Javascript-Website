@@ -1,0 +1,4 @@
+body{width:50%; margin:auto;display: flex;
+    flex-direction: column; }
+    #Header{background-color: whitesmoke; color: black; border:1px; padding:20px;}
+    #Footer{background-color: whitesmoke; color: black; border:1px; padding:20px; text-align:end}
