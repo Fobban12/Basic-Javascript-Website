@@ -1,4 +1,8 @@
-body{width:50%; margin:auto;display: flex;
-    flex-direction: column; }
-    #Header{background-color: whitesmoke; color: black; border:1px; padding:20px;}
-    #Footer{background-color: whitesmoke; color: black; border:1px; padding:20px; text-align:end}
+body{width:50%; margin:auto;display: flex;flex-direction: column; }
+
+
+    #Header{background-color: whitesmoke; color: black; border:1px; padding:20px;display:flex; justify-content:space-between; border-radius: 15px;}
+    #Footer{background-color: whitesmoke; color: black; border:1px; padding:29px; text-align:end; border-radius: 15px;}
+
+    #Categories{padding:10px}
+    #HeaderInfo{padding:10px}

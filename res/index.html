@@ -7,9 +7,9 @@
 
   <body onload="frontPage()">
   <div id="fullPage">
-    <div id="Header"><a>Company</a><a>Search</a><a>Login</a><a>Cart</a></div>
+    <div id="Header"><a id="Categories" onclick="sideBar()">Categories</a><a id="HeaderInfo">Company</a><input value="Search" id="HeaderInfo" onclick="if (this.value == 'Search') this.value = ''" type="text"><a id="HeaderInfo">Login</a><a id="HeaderInfo">Cart</a></div>
     <div id="SideBar"></div>
-    <div id="Content"></div>
+    <div id="Content"></div> 
     <div id="Footer"> About us</div>
     <script src="./scripts.js"></script>
   </div>
