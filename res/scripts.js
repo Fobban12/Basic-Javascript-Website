@@ -17,9 +17,6 @@ function sideBar(){$('#SideBar').html(`
  <div>Hello</div>
  <div>Hello</div>
 </div>
-
-
-
 `),$('#SideBar').toggleClass("show")}
 
 
