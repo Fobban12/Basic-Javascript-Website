@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js' type='text/javascript'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js' type='text/javascript'>
+
+    $('#Categories').onclick(function(){sideBar();});
+
+    </script>
     <link rel="stylesheet" href="./styling.css">
+    
   </head>
 
   <body onload="frontPage()">
   <div id="fullPage">
     <div id="Header"><a id="Categories" onclick="sideBar()">Categories</a><a id="HeaderInfo">Company</a><input value="Search" id="HeaderInfo" onclick="if (this.value == 'Search') this.value = ''" type="text"><a id="HeaderInfo">Login</a><a id="HeaderInfo">Cart</a></div>
-    <div id="SideBar"></div>
+    <div id="SideBar" class="sideBarDisplay"></div>
     <div id="Content"></div> 
     <div id="Footer"> About us</div>
     <script src="./scripts.js"></script>
