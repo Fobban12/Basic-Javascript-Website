@@ -1,3 +1,3 @@
 NPM Install before use.
 
-Node index.js to run
+NPM Start to run
