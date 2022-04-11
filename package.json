@@ -3,14 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  
-  "engines" : { 
-    "npm" : ">=7.0.0",
-    "node" : ">=16.14.2"
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=16.14.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-    
   },
   "keywords": [],
   "author": "",
@@ -19,17 +17,18 @@
     "@types/jquery": "^3.5.14",
     "express": "^4.17.3",
     "mysql": "^2.18.1",
-    "open": "^8.4.0"
+    "open": "^8.4.0",
+    "pg": "^8.7.3"
   },
-
   "terminal.integrated.profiles.windows": {
-     "PowerShell": {
-     "source": "PowerShell",
-     "icon": "terminal-powershell",
-     "args": ["-ExecutionPolicy", "Bypass"]
-     }
-     },
-    "terminal.integrated.defaultProfile.windows": "PowerShell"
-    
-  
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass"
+      ]
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "PowerShell"
 }

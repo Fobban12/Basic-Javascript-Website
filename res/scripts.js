@@ -1,6 +1,5 @@
 
 
-
 function frontPage(){$('#Content').html(`
 <div id="frontPageCSS">
  <div id="deals"> Here are the deals, and the pictures of the deals, not sure what yet</div>
@@ -11,13 +10,51 @@ function frontPage(){$('#Content').html(`
 
 );}
 
-function sideBar(){$('#SideBar').html(`
-<div id="sideBarCSS">
- <div>Hello</div>
- <div>Hello</div>
- <div>Hello</div>
-</div>
-`),$('#SideBar').toggleClass("show")}
+function sideBar(){
+$('#SideBar').html(`
+ <div id="sideBarCSS">
+  <div>${category[0].Name}</div>
+  <div>${category[1].Name}</div>
+  <div>${category[2].Name}</div>
+ </div>
+ `),$('#SideBar').toggleClass("show")
+    
+    
+};
+
+
+const category = 
+    [    
+     {
+      id:1,
+      Name:"Components"
+     },
+     {
+        id:2,
+        Name:"TV'S"
+     },
+     {
+        id:3,
+        Name:"Some stuff"
+     }
+    ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
