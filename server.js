@@ -13,17 +13,17 @@ require('dotenv').config();
 app.get('/db', async (req, res) => {
     const { Pool } = require('pg');
     const pool = (() => {
-         
-        //For Heroku
-        /*return new Pool({
-         connectionString: process.env.DATABASE_URL,
-         ssl: {
-                rejectUnauthorized: false
-              }
-      });*/
-      //Local database
+        return new Pool({
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+        rejectUnauthorized: false
+        }
+        });
+        })();
+        
 
-      if (process.env.NODE_ENV !== 'production') {
+      //Local database
+      /*if (process.env.NODE_ENV !== 'production') {
         return new Pool({
         connectionString: process.env.DATABASE_URL,
         ssl: false
@@ -37,7 +37,7 @@ app.get('/db', async (req, res) => {
         {
         rejectUnauthorized: false
         }
-        })}});
+        })}});*/
     try {
         const client = await pool.connect();
         const result = await client.query('SELECT user_id, username FROM accounts;');
