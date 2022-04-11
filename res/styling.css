@@ -6,3 +6,10 @@ body{width:50%; margin:auto;display: flex;flex-direction: column; }
 
     #Categories{padding:10px}
     #HeaderInfo{padding:10px}
+    
+    .sideBarDisplay{display:none}
+    #sideBarCSS{position:fixed; background-color:white; padding:10px;width: 175px;
+        height: 250px;
+        text-align: center;}
+    
+    .show{display:block}
