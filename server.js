@@ -13,9 +13,7 @@ const port = process.env.PORT ||3000;
 
 app.use(express.static(__dirname + '/res'))
 
-app.get('/',(req, res) => {
-    res.sendFile(path.resolve(__dirname,"./res/index.html"));
-});
+
 
 app.all('*', (req, res) => {res.status(404).send("Resource not found")})
 
@@ -24,6 +22,7 @@ app.listen(port,() => console.log("App on port: " + port + "!" + "\nGo to localh
 
 app.get('/db', async (req, res) => {
     const { Pool } = require('pg');
+    res.sendFile(path.resolve(__dirname,"./res/index.html"))
     const pool = (() => {
     return new Pool({
     connectionString: process.env.DATABASE_URL,
