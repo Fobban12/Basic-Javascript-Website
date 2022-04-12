@@ -10,7 +10,7 @@ const app = express();
 
 const port = process.env.PORT ||4000;
 
-//This is for testing the database in heroku
+//This is for testing the database in heroku or local
 app.get('/db', async (req, res) => {
     const { Pool } = require('pg');
     const pool = (() => {

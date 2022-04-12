@@ -8,8 +8,9 @@ body{width:50%; margin:auto;display: flex;flex-direction: column; }
     #HeaderInfo{padding:10px}
     
     .sideBarDisplay{display:none}
-    #sideBarCSS{position:fixed; background-color:white; padding:10px;width: 175px;
+    #sideBarCSS{position:fixed; background-color:white;width: 175px;
         height: 250px;
-        text-align: center;}
+        text-align: center; border:1px solid}
+    #sideBarNames{padding-bottom: 10px; padding-top: 10px;border-bottom: 1px solid black}
     
     .show{display:block}

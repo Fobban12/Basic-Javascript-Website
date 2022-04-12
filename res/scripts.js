@@ -9,13 +9,13 @@ function frontPage(){$('#Content').html(`
 `
 
 );}
-
+//Loop will be done a bit later, this is just for testing.
 function sideBar(){
 $('#SideBar').html(`
  <div id="sideBarCSS">
-  <div>${category[0].Name}</div>
-  <div>${category[1].Name}</div>
-  <div>${category[2].Name}</div>
+  <div id="sideBarNames">${category[0].Name}</div>
+  <div id="sideBarNames">${category[1].Name}</div>
+  <div id="sideBarNames">${category[2].Name}</div>
  </div>
  `),$('#SideBar').toggleClass("show")
     
