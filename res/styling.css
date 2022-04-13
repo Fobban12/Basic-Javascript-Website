@@ -8,9 +8,11 @@ body{width:50%; margin:auto;display: flex;flex-direction: column; }
     #HeaderInfo{padding:10px}
     
     .sideBarDisplay{display:none}
+    .show{display:block}
     #sideBarCSS{position:fixed; background-color:white;width: 175px;
-        height: 250px;
         text-align: center; border:1px solid}
     #sideBarNames{padding-bottom: 10px; padding-top: 10px;border-bottom: 1px solid black}
+    #subCategory{position:fixed; background-color:white;width: 175px;
+        text-align: center; border:1px solid; left: 817px;}
     
-    .show{display:block}
+ 

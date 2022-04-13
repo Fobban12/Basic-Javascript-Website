@@ -1,4 +1,10 @@
-
+//Shows and hides the sidebar, and will also hide the subCategory if shown
+$('#Categories').on("click",function(){
+if ($('#subCategory').hasClass("show") == true)
+{
+      $('#subCategory').toggleClass("show"); $('#SideBar').toggleClass("show")
+} 
+else {sideBar()}});
 
 function frontPage(){$('#Content').html(`
 <div id="frontPageCSS">
@@ -13,15 +19,25 @@ function frontPage(){$('#Content').html(`
 function sideBar(){
 $('#SideBar').html(`
  <div id="sideBarCSS">
-  <div id="sideBarNames">${category[0].Name}</div>
-  <div id="sideBarNames">${category[1].Name}</div>
-  <div id="sideBarNames">${category[2].Name}</div>
+  <div id="sideBarNames" onclick="subCategory()">${category[0].Name}</div>
+  <div id="sideBarNames" onclick="subCategory()">${category[1].Name}</div>
+  <div id="sideBarNames" onclick="subCategory()">${category[2].Name}</div>
  </div>
  `),$('#SideBar').toggleClass("show")
-    
-    
 };
 
+//This should show the right subcategories based from the category unique id, will be implemented later, will loop trough all the subcategories
+//!!!!!!Right now the css styling is so that it will have an absolute position that will be different based on display size,!!!!fix this later!!!!
+function subCategory()
+{
+   $('#subCategory').html(`
+   <div id="subCategory">
+    <div id="sideBarNames">${category[1].Name}</div>
+    <div id="sideBarNames">${category[0].Name}</div>
+    <div id="sideBarNames">${category[2].Name}</div>
+   </div>
+   `),$('#subCategory').toggleClass("show")
+  };
 
 const category = 
     [    
