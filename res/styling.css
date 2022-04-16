@@ -1,25 +1,44 @@
 body{width:50%; margin:auto;display: flex;flex-direction: column; min-width: 1100px;}
 
 
-    #Header{background-color: whitesmoke; color: black; border:1px; padding:20px;display:flex; justify-content:space-between; border-radius: 15px;}
-    #Footer{background-color: whitesmoke; color: black; border:1px; padding:29px; text-align:end; border-radius: 15px;}
+   
+#Header{background-color: whitesmoke; color: black; border:1px; padding:20px;display:flex; justify-content:space-between; border-radius: 15px;}
 
-    #Categories{padding:10px}
-    #HeaderInfo{padding:10px}
+#Footer{background-color: whitesmoke; color: black; border:1px; padding:29px; text-align:end; border-radius: 15px;}
+
+   
+#Categories{padding:10px}
+
+#HeaderInfo{padding:10px}
     
-    .sideBarDisplay{display:none}
-    .show{display:block}
-    #sideBarCSS{position:absolute; background-color:white;width: 175px;
+    
+    
+    
+.sideBarDisplay{display:none}
+
+.show{display:block}
+    
+#sideBarCSS{position:absolute; background-color:white;width: 175px;
         text-align: center; border:1px solid}
-    #sideBarNames{padding-bottom: 10px; padding-top: 10px;border-bottom: 1px solid black}
-    #subCategory{position:absolute; background-color:white;width: 175px;
+#sideBarNames{padding-bottom: 10px; padding-top: 10px;border-bottom: 1px solid black}
+
+#subCategory{position:absolute; background-color:white;width: 175px;
         text-align: center; border:1px solid;margin-left: 176px;}
-    #categoryArrow{float: right;
+
+#categoryArrow{float: right;
         padding-right: 11px;
         border: 1px solid black;
         padding-left: 12px;
         left: -6px;
         position: relative; 
         background-color: white;}
+
+
+   
+#LoginAndRegister{padding:20px; margin-left: 35%;}
+#LoginAndRegisterBox{border:1px solid black;height: 300px;
+        width: 300px;
+        text-align: center;
+        line-height: 54px;}
     
  

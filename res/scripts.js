@@ -47,11 +47,24 @@ function productCategoryView()
 
 
 
+function login()
+{
+$('#Content').html(`
 
 
+<div id="LoginAndRegister"> 
+ <div id="LoginAndRegisterBox">
+  <div onclick="frontPage()"> Go back </div>
+  <div>Register or login here</div>
+  <div>Email: <input type="email"></input></div>
+  <div>Password: <input type="password"></input> </div>
+  <div>Login or register</div>
+ </div>
+</div>
 
 
-
+`)
+}
 
 
 
