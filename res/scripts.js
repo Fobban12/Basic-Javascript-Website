@@ -1,10 +1,3 @@
-//Shows and hides the sidebar, and will also hide the subCategory if shown
-$('#Categories').on("click",function(){
-if ($('#subCategory').hasClass("show") == true)
-{
-      $('#subCategory').toggleClass("show"); $('#SideBar').toggleClass("show")
-} 
-else {sideBar()}});
 
 function frontPage(){$('#Content').html(`
 <div id="frontPageCSS">
@@ -19,9 +12,9 @@ function frontPage(){$('#Content').html(`
 function sideBar(){
 $('#SideBar').html(`
  <div id="sideBarCSS">
-  <div id="sideBarNames" onclick="subCategory()">${category[0].Name}</div>
-  <div id="sideBarNames" onclick="subCategory()">${category[1].Name}</div>
-  <div id="sideBarNames" onclick="subCategory()">${category[2].Name}</div>
+  <div id="sideBarNames"> <span onclick="productCategoryView()">${category[0].Name}</span> <button id="categoryArrow" onclick="subCategory()"> > </button></div>
+  <div id="sideBarNames"> <span onclick="productCategoryView()">${category[1].Name}</span> <button id="categoryArrow" onclick="subCategory()"> > </button></div>
+  <div id="sideBarNames"> <span onclick="productCategoryView()">${category[2].Name}</span> <button id="categoryArrow" onclick="subCategory()"> > </button></div>
  </div>
  `),$('#SideBar').toggleClass("show")
 };
@@ -31,13 +24,68 @@ $('#SideBar').html(`
 function subCategory()
 {
    $('#subCategory').html(`
-   <div id="subCategory">
-    <div id="sideBarNames">${category[1].Name}</div>
-    <div id="sideBarNames">${category[0].Name}</div>
-    <div id="sideBarNames">${category[2].Name}</div>
+   <div>
+    <div id="sideBarNames" onclick="productCategoryView()">${category[1].Name}</div>
+    <div id="sideBarNames" onclick="productCategoryView()">${category[0].Name}</div>
+    <div id="sideBarNames" onclick="productCategoryView()">${category[2].Name}</div>
    </div>
    `),$('#subCategory').toggleClass("show")
   };
+
+
+// Data that comes should be based on the pressed categorys unique ID, so in other words, it will show the items that the category ID is assigned to.
+function productCategoryView()
+{
+   $('#Content').html(`
+   <div id="frontPageCSS">
+    <div id="deals"> Title of the category pressed</div>
+    <div id="products">The stuff</div>
+   </div>
+   `
+   );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//Shows and hides the sidebar, and will also hide the subCategory if shown
+$('#Categories').on("click",function(){
+   if ($('#subCategory').hasClass("show") == true)
+   {
+         $('#subCategory').toggleClass("show"); $('#SideBar').toggleClass("show")
+   } 
+   else {sideBar()}});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const category = 
     [    

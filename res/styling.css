@@ -1,4 +1,4 @@
-body{width:50%; margin:auto;display: flex;flex-direction: column; }
+body{width:50%; margin:auto;display: flex;flex-direction: column; min-width: 1100px;}
 
 
     #Header{background-color: whitesmoke; color: black; border:1px; padding:20px;display:flex; justify-content:space-between; border-radius: 15px;}
@@ -9,10 +9,17 @@ body{width:50%; margin:auto;display: flex;flex-direction: column; }
     
     .sideBarDisplay{display:none}
     .show{display:block}
-    #sideBarCSS{position:fixed; background-color:white;width: 175px;
+    #sideBarCSS{position:absolute; background-color:white;width: 175px;
         text-align: center; border:1px solid}
     #sideBarNames{padding-bottom: 10px; padding-top: 10px;border-bottom: 1px solid black}
-    #subCategory{position:fixed; background-color:white;width: 175px;
-        text-align: center; border:1px solid; left: 817px;}
+    #subCategory{position:absolute; background-color:white;width: 175px;
+        text-align: center; border:1px solid;margin-left: 176px;}
+    #categoryArrow{float: right;
+        padding-right: 11px;
+        border: 1px solid black;
+        padding-left: 12px;
+        left: -6px;
+        position: relative; 
+        background-color: white;}
     
  
