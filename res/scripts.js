@@ -1,5 +1,4 @@
 
-
 function frontPage(){$('#Content').html(`
 <div id="frontPageCSS">
  <div id="deals"> Here are the deals, and the pictures of the deals, not sure what yet</div>
@@ -9,18 +8,96 @@ function frontPage(){$('#Content').html(`
 `
 
 );}
-
+//Loop will be done a bit later, this is just for testing.
 function sideBar(){
 $('#SideBar').html(`
  <div id="sideBarCSS">
-  <div>${category[0].Name}</div>
-  <div>${category[1].Name}</div>
-  <div>${category[2].Name}</div>
+  <div id="sideBarNames"> <span onclick="productCategoryView()">${category[0].Name}</span> <button id="categoryArrow" onclick="subCategory()"> > </button></div>
+  <div id="sideBarNames"> <span onclick="productCategoryView()">${category[1].Name}</span> <button id="categoryArrow" onclick="subCategory()"> > </button></div>
+  <div id="sideBarNames"> <span onclick="productCategoryView()">${category[2].Name}</span> <button id="categoryArrow" onclick="subCategory()"> > </button></div>
  </div>
  `),$('#SideBar').toggleClass("show")
-    
-    
 };
+
+//This should show the right subcategories based from the category unique id, will be implemented later, will loop trough all the subcategories
+//!!!!!!Right now the css styling is so that it will have an absolute position that will be different based on display size,!!!!fix this later!!!!
+function subCategory()
+{
+   $('#subCategory').html(`
+   <div>
+    <div id="sideBarNames" onclick="productCategoryView()">${category[1].Name}</div>
+    <div id="sideBarNames" onclick="productCategoryView()">${category[0].Name}</div>
+    <div id="sideBarNames" onclick="productCategoryView()">${category[2].Name}</div>
+   </div>
+   `),$('#subCategory').toggleClass("show")
+  };
+
+
+// Data that comes should be based on the pressed categorys unique ID, so in other words, it will show the items that the category ID is assigned to.
+function productCategoryView()
+{
+   $('#Content').html(`
+   <div id="frontPageCSS">
+    <div id="deals"> Title of the category pressed</div>
+    <div id="products">The stuff</div>
+   </div>
+   `
+   );
+}
+
+
+
+function login()
+{
+$('#Content').html(`
+
+
+<div id="LoginAndRegister"> 
+ <div id="LoginAndRegisterBox">
+  <div onclick="frontPage()"> Go back </div>
+  <div>Register or login here</div>
+  <div>Email: <input type="email"></input></div>
+  <div>Password: <input type="password"></input> </div>
+  <div>Login or register</div>
+ </div>
+</div>
+
+
+`)
+}
+
+
+
+
+//Shows and hides the sidebar, and will also hide the subCategory if shown
+$('#Categories').on("click",function(){
+   if ($('#subCategory').hasClass("show") == true)
+   {
+         $('#subCategory').toggleClass("show"); $('#SideBar').toggleClass("show")
+   } 
+   else {sideBar()}});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 const category = 
