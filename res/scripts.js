@@ -1,4 +1,6 @@
 
+//Loop should be here, remove this later when done
+// The structure of the HTML will be different, on a later date
 function frontPage(){$('#Content').html(`
 <div id="frontPageCSS">
  <div id="deals"> Here are the deals, and the pictures of the deals, not sure what yet</div>
@@ -9,6 +11,7 @@ function frontPage(){$('#Content').html(`
 
 );}
 //Loop will be done a bit later, this is just for testing.
+// The structure of the HTML will be different, on a later date
 function sideBar(){
 $('#SideBar').html(`
  <div id="sideBarCSS">
@@ -21,6 +24,7 @@ $('#SideBar').html(`
 
 //This should show the right subcategories based from the category unique id, will be implemented later, will loop trough all the subcategories
 //!!!!!!Right now the css styling is so that it will have an absolute position that will be different based on display size,!!!!fix this later!!!!
+// The structure of the HTML will be different, on a later date
 function subCategory()
 {
    $('#subCategory').html(`
@@ -34,19 +38,54 @@ function subCategory()
 
 
 // Data that comes should be based on the pressed categorys unique ID, so in other words, it will show the items that the category ID is assigned to.
+//Loop should be here, remove this later when done
+// The structure of the HTML will be different, on a later date
 function productCategoryView()
 {
    $('#Content').html(`
    <div id="frontPageCSS">
-    <div id="deals"> Title of the category pressed</div>
-    <div id="products">The stuff</div>
+    <div onclick="productDetailView()"> Title of the category pressed</div>
+    <div onclick="productDetailView()">Product should be here with its: picture and info </div>
+    <div onclick="productDetailView()">Product should be here with its: picture and info </div>
+    <div onclick="productDetailView()">Product should be here with its: picture and info </div>
+    <div onclick="productDetailView()">Product should be here with its: picture and info </div>
+    <div onclick="productDetailView()">Product should be here with its: picture and info </div>
    </div>
    `
    );
 }
 
+// A loop here, and the data should come from the pressed product ID tree: Category -> SubCategory -> Specific product
+// The structure of the HTML will be different, on a later date
+//Loop should be here, remove this later when done
+function productDetailView()
+{
+   $('#Content').html(`
+   <div id="frontPageCSS">
+    <div>Product name</div>
+    <div> 
+      <div>Other stuff that there should be </div>
+      <div>Other stuff that there should be </div>
+      <div>Other stuff that there should be </div>
+      <div>Other stuff that there should be </div>
+      <div>Other stuff that there should be </div>
+    </div>
+  
+
+   `
+   );
+}
 
 
+// The structure of the HTML will be different, on a later date
+function cart()
+{
+
+}
+
+
+
+// The structure of the HTML will be slightly different, on a later date
 function login()
 {
 $('#Content').html(`
@@ -69,6 +108,8 @@ $('#Content').html(`
 
 
 
+
+
 //Shows and hides the sidebar, and will also hide the subCategory if shown
 $('#Categories').on("click",function(){
    if ($('#subCategory').hasClass("show") == true)
@@ -76,23 +117,6 @@ $('#Categories').on("click",function(){
          $('#subCategory').toggleClass("show"); $('#SideBar').toggleClass("show")
    } 
    else {sideBar()}});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
