@@ -80,7 +80,7 @@ function productDetailView()
 // The structure of the HTML will be different, on a later date
 function cart()
 {
-
+$('#Content').html(`<div>Cart</div>`)
 }
 
 
@@ -108,6 +108,17 @@ $('#Content').html(`
 
 
 
+function AboutUs(){$('#Content').html(`
+
+
+<div>About us stuff</div>
+
+
+`)}
+
+
+
+
 
 
 //Shows and hides the sidebar, and will also hide the subCategory if shown
@@ -119,6 +130,7 @@ $('#Categories').on("click",function(){
    else {sideBar()}});
 
 
+function searchBar(){}
 
 
 
