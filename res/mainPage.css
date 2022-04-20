@@ -1,0 +1,12 @@
+#Deals{    display: flex;
+    margin-top: 35px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    border: 2px black solid;
+    justify-content: space-around;
+    padding-top: 26px;
+    background-color: ghostwhite;
+}
+
+#DealPictures{width:390px; margin-bottom:30px}
+
