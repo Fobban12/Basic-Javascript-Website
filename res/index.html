@@ -11,7 +11,17 @@
 
   <body onload="frontPage()">
   <div>
-    <div id="Header"><button id="Categories" >Categories</button><a id="HeaderInfo" onclick="frontPage()">Liernia</a><input value="Search" id="HeaderInfo" onclick="if (this.value == 'Search') this.value = ''" type="text"><a id="HeaderInfo" onclick="login()">Login</a><a id="HeaderInfo" onclick="cart()">Cart</a></div>
+    <div id="Header">
+
+      <button id="Categories" >Categories</button>
+      <a id="HeaderInfo" onclick="frontPage()">Liernia</a>
+      <input id="HeaderInfo" type="text" placeholder="Search">
+      <a id="HeaderInfo" onclick="login()">Login</a>
+      <a id="HeaderInfo" onclick="cart()">Cart</a>
+    
+    </div>
+    
+    
     <div id="SideBar" class="sideBarDisplay"></div>
     <div id="subCategory" class="sideBarDisplay"></div>
     <div id="Content"></div> 
