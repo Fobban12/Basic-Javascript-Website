@@ -18,19 +18,57 @@ function frontPage(){
    $('#Content').html(`
 <div id="frontPageCSS">
  <div id="Deals">
- 
- <img src="./images/amdDeals.jpg" id="DealPictures"></img>
- <img src="./images/amdDeals.jpg" id="DealPictures"></img>
- <img src="./images/amdDeals.jpg" id="DealPictures"></img>
- <img src="./images/amdDeals.jpg" id="DealPictures"></img>
- 
+  <img src="./images/amdDeals.jpg" id="DealPictures"></img>
+  <img src="./images/amdDeals.jpg" id="DealPictures"></img>
+  <img src="./images/amdDeals.jpg" id="DealPictures"></img>
+  <img src="./images/amdDeals.jpg" id="DealPictures"></img>
  </div>
 
  <div id="FrontPageTitle">Recommended for you</div>
- <div id="products">Recommended Products</div>
+ <div id="Products">
+  <div id="Product">
+   <img src="./images/amdDeals.jpg" id="ProductPictures">
+   <div>Name</div>
+   <div>Price</div>
+  </div>
+
+  <div id="Product">
+   <img src="./images/amdDeals.jpg" id="ProductPictures">
+   <div>Name</div>
+   <div>Price</div>
+  </div>
+
+  <div id="Product">
+   <img src="./images/amdDeals.jpg" id="ProductPictures">
+   <div>Name</div>
+   <div>Price</div>
+  </div>
+ 
+ </div>
+ <div>Some kind of slide bar here</div>
 
  <div id="FrontPageTitle">Popular</div>
- <div id="products">Here are the products that you have seen or some random products that are in the shop</div>
+ <div id="Products">
+  <div id="Product">
+   <img src="./images/amdDeals.jpg" id="ProductPictures">
+   <div>Name</div>
+   <div>Price</div>
+  </div>
+
+  <div id="Product">
+   <img src="./images/amdDeals.jpg" id="ProductPictures">
+   <div>Name</div>
+   <div>Price</div>
+  </div>
+  
+  <div id="Product">
+   <img src="./images/amdDeals.jpg" id="ProductPictures">
+   <div>Name</div>
+   <div>Price</div>
+  </div>
+ </div>
+ <div>Some kind of slide bar here</div>
+ 
 </div>
 `
 );}
