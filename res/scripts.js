@@ -1,16 +1,11 @@
 
 //Loop should be here, remove this later when done
-//The structure of the HTML will be different, on a later date
 //Pictures should come from the database
 function frontPage(){
 
 
 
-
-
-
-
-
+//For Loop here
 
 
 
@@ -26,28 +21,50 @@ function frontPage(){
 
  <div id="FrontPageTitle">Recommended for you</div>
  <div id="Products">
-  <div id="Product">
-   <img src="./images/amdDeals.jpg" id="ProductPictures">
-   <div>Name</div>
-   <div>Price</div>
-  </div>
 
   <div id="Product">
    <img src="./images/amdDeals.jpg" id="ProductPictures">
-   <div>Name</div>
-   <div>Price</div>
-  </div>
+   <div>AMD Radeon 6600XT</div>
+   <div>-Info</div>
+   <div>-Info</div>
+   <div>-Info</div>
+   <div>-Info</div>
+   <div>600€</div>
+</div>
+
 
   <div id="Product">
-   <img src="./images/amdDeals.jpg" id="ProductPictures">
-   <div>Name</div>
-   <div>Price</div>
-  </div>
- 
+  <img src="./images/amdDeals.jpg" id="ProductPictures">
+  <div>AMD Radeon 6600XT</div>
+  <div>-Info</div>
+  <div>-Info</div>
+  <div>-Info</div>
+  <div>-Info</div>
+  <div>600€</div>
  </div>
- <div>Some kind of slide bar here</div>
 
- <div id="FrontPageTitle">Popular</div>
+ <div id="Product">
+ <img src="./images/amdDeals.jpg" id="ProductPictures">
+ <div>AMD Radeon 6600XT</div>
+ <div>-Info</div>
+ <div>-Info</div>
+ <div>-Info</div>
+ <div>-Info</div>
+ <div>600€</div>
+</div>
+
+<div id="Product">
+<img src="./images/amdDeals.jpg" id="ProductPictures">
+<div>AMD Radeon 6600XT</div>
+<div>-Info</div>
+<div>-Info</div>
+<div>-Info</div>
+<div>-Info</div>
+<div>600€</div>
+</div>
+</div>
+
+<div id="FrontPageTitle">Popular</div>
  <div id="Products">
   <div id="Product">
    <img src="./images/amdDeals.jpg" id="ProductPictures">
@@ -67,7 +84,7 @@ function frontPage(){
    <div>Price</div>
   </div>
  </div>
- <div>Some kind of slide bar here</div>
+
  
 </div>
 `
