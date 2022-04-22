@@ -9,9 +9,9 @@ function frontPage(){
 
 
 
-
+//The excess stuff will be removed when the loop is done
    $('#Content').html(`
-<div id="frontPageCSS">
+<div>
  <div id="Deals">
   <img src="./images/amdDeals.jpg" id="DealPictures"></img>
   <img src="./images/amdDeals.jpg" id="DealPictures"></img>
@@ -96,14 +96,70 @@ function frontPage(){
 // The structure of the HTML will be different, on a later date
 function productCategoryView()
 {
+
+ //Loop here
+
+
+
+
+
+
+
    $('#Content').html(`
-   <div id="frontPageCSS">
-    <div onclick="productDetailView()"> Title of the category pressed</div>
-    <div onclick="productDetailView()">Product should be here with its: picture and info </div>
-    <div onclick="productDetailView()">Product should be here with its: picture and info </div>
-    <div onclick="productDetailView()">Product should be here with its: picture and info </div>
-    <div onclick="productDetailView()">Product should be here with its: picture and info </div>
-    <div onclick="productDetailView()">Product should be here with its: picture and info </div>
+
+   <div id="CategoryTitle">Graphic Cards</div>
+
+   <div id="CategoryProducts">
+
+
+    <div id ="CategoryProduct" onclick="productDetailView()">
+      <img src="./images/amdDeals.jpg" id="CategoryImages"> 
+      <div id="CategoryInfo">Title</div>
+      <div id="CategoryInfo">Short Info</div> 
+      <div id="CategoryInfo">Availability:1</div> 
+      <div id="CategoryInfo">Add to cart</div>  
+    </div>
+
+    <div id ="CategoryProduct" onclick="productDetailView()">
+      <img src="./images/amdDeals.jpg" id="CategoryImages"> 
+      <div id="CategoryInfo">Title</div>
+      <div id="CategoryInfo">Short Info</div> 
+      <div id="CategoryInfo">Availability:1</div> 
+      <div id="CategoryInfo">Add to cart</div>  
+    </div>
+
+    <div id ="CategoryProduct" onclick="productDetailView()">
+      <img src="./images/amdDeals.jpg" id="CategoryImages"> 
+      <div id="CategoryInfo">Title</div>
+      <div id="CategoryInfo">Short Info</div> 
+      <div id="CategoryInfo">Availability:1</div> 
+      <div id="CategoryInfo">Add to cart</div>  
+    </div>
+
+    <div id ="CategoryProduct" onclick="productDetailView()">
+      <img src="./images/amdDeals.jpg" id="CategoryImages"> 
+      <div id="CategoryInfo">Title</div>
+      <div id="CategoryInfo">Short Info</div> 
+      <div id="CategoryInfo">Availability:1</div> 
+      <div id="CategoryInfo">Add to cart</div>  
+    </div>
+
+    <div id ="CategoryProduct" onclick="productDetailView()">
+      <img src="./images/amdDeals.jpg" id="CategoryImages"> 
+      <div id="CategoryInfo">Title</div>
+      <div id="CategoryInfo">Short Info</div> 
+      <div id="CategoryInfo">Availability:1</div> 
+      <div id="CategoryInfo">Add to cart</div>  
+    </div>
+
+    <div id ="CategoryProduct" onclick="productDetailView()">
+      <img src="./images/amdDeals.jpg" id="CategoryImages"> 
+      <div id="CategoryInfo">Title</div>
+      <div id="CategoryInfo">Short Info</div> 
+      <div id="CategoryInfo">Availability:1</div> 
+      <div id="CategoryInfo">Add to cart</div>  
+    </div>
+
    </div>
    `
    );
@@ -115,7 +171,7 @@ function productCategoryView()
 function productDetailView()
 {
    $('#Content').html(`
-   <div id="frontPageCSS">
+   <div >
     <div>Product name</div>
     <div> 
       <div>Other stuff that there should be </div>
@@ -186,8 +242,6 @@ $('#Content').html(`
 }
 
 
-
-
 function AboutUs(){$('#Content').html(`
 
 
@@ -195,10 +249,6 @@ function AboutUs(){$('#Content').html(`
 
 
 `)}
-
-
-
-
 
 
 //Shows and hides the sidebar, and will also hide the subCategory if shown
@@ -211,8 +261,6 @@ $('#Categories').on("click",function(){
 
 
 function searchBar(){}
-
-
 
 
 
@@ -229,7 +277,19 @@ const category =
      {
         id:3,
         Name:"Some stuff"
-     }
+     },
+     {
+      id:4,
+      Name:"Hello"
+   },
+   {
+      id:5,
+      Name:"Testing"
+   },
+   {
+      id:6,
+      Name:"The lenght"
+   }
     ]
 
 
