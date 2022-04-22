@@ -4,18 +4,18 @@
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js' type='text/javascript'>
     </script>
     <link rel="stylesheet" href="./styling.css">
+    <link rel="stylesheet" href="./mainPage.css">
+    <link rel="stylesheet" href="./CategoryView.css">
     
   </head>
 
-  <body onload="frontPage()">
+  <body onload="productCategoryView()">
   <div>
-    <div id="Header"><button id="Categories" >Categories</button><a id="HeaderInfo" onclick="frontPage()">Some random company</a><input value="Search" id="HeaderInfo" onclick="if (this.value == 'Search') this.value = ''" type="text"><a id="HeaderInfo" onclick="login()">Login</a><a id="HeaderInfo">Cart</a></div>
-  <div>
+    <div id="Header"><button id="Categories" >Categories</button><a id="HeaderInfo" onclick="frontPage()">Liernia</a><input value="Search" id="HeaderInfo" onclick="if (this.value == 'Search') this.value = ''" type="text"><a id="HeaderInfo" onclick="login()">Login</a><a id="HeaderInfo" onclick="cart()">Cart</a></div>
     <div id="SideBar" class="sideBarDisplay"></div>
     <div id="subCategory" class="sideBarDisplay"></div>
     <div id="Content"></div> 
-  </div>
-    <div id="Footer"> About us</div>
+    <div id="Footer"> <a onclick="AboutUs()">About us</a></div>
     <script src="./scripts.js"></script>
   </div>
   </body>

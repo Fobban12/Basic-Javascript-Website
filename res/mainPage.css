@@ -1,0 +1,27 @@
+#Deals{    display: flex;
+    margin-top: 35px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    border: 2px black solid;
+    justify-content: space-around;
+    padding-top: 26px;
+    background-color: ghostwhite;
+}
+#DealPictures{width:390px; 
+    margin-bottom:30px;}
+
+
+#FrontPageTitle{font-size:20px; 
+    font-weight:bold}
+#Products{ margin-top:20px;  
+    margin-bottom:20px; 
+    display: flex; 
+    justify-content: space-between; 
+    overflow-x:auto}
+#Product{padding:13px;
+     background-color: ghostwhite;}
+#ProductPictures{width:390px;}
+#CategoryInfo{padding:20px; 
+    align-self: center;}
+
+
