@@ -171,16 +171,31 @@ function productCategoryView()
 function productDetailView()
 {
    $('#Content').html(`
-   <div >
-    <div>Product name</div>
-    <div> 
-      <div>Other stuff that there should be </div>
-      <div>Other stuff that there should be </div>
-      <div>Other stuff that there should be </div>
-      <div>Other stuff that there should be </div>
-      <div>Other stuff that there should be </div>
+   <div id="ProductWholeDetailView"> 
+    <img src="./images/amdDeals.jpg" id="DetailViewIamges">
+      <div>
+       <div>RX 6600XT</div>
+       <div>RX 6600XT</div>
+       <div>RX 6600XT</div>
+       <div>RX 6600XT</div>
+       <div>RX 6600XT</div>
+      </div>
+
+      <div>
+       <div>Price: 350€ </div>
+       <div>Add to cart</div>
+      </div>
     </div>
-  
+  <div id="ProductInfoButtons">
+   <div id="ProductInfoButton">Hello</div>
+   <div id="ProductInfoButton">Hello</div>
+   <div id="ProductInfoButton">Hello</div>
+  </div>
+  <div id="ProductInfoArea">
+   <div>Hello</div>
+   <div>Hello</div>
+   <div>Hello</div>
+  </div>
 
    `
    );
