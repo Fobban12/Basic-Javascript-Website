@@ -3,16 +3,18 @@ body{width:50%; margin:auto;display: flex;flex-direction: column; min-width: 110
 
    
 #Header{background-color: whitesmoke; color: black; border:1px; padding:20px;display:flex; justify-content:space-between; border-radius: 15px;}
+#HeaderInfo{padding:10px}
+
+
+
 
 #Footer{background-color: whitesmoke; color: black; border:1px; padding:29px; text-align:end; border-radius: 15px;}
 
-   
-#Categories{padding:10px}
 
-#HeaderInfo{padding:10px}
-    
-    
-    
+
+
+#Categories{padding:10px}
+#Categories:hover{box-shadow: 1px;}
     
 .sideBarDisplay{display:none}
 .show{display:block}
@@ -24,6 +26,7 @@ body{width:50%; margin:auto;display: flex;flex-direction: column; min-width: 110
 #sideBarNames{padding-bottom: 10px; 
         padding-top: 10px;
         border-bottom: 1px solid black}
+#sideBarNames:hover{background-color:ghostwhite}
 #subCategory{position:absolute; 
         background-color:white;
         width: 175px;
@@ -37,6 +40,7 @@ body{width:50%; margin:auto;display: flex;flex-direction: column; min-width: 110
         left: -6px;
         position: relative; 
         background-color: white;}
+ #categoryArrow:hover{background-color: ghostwhite}
 
 
    
@@ -46,5 +50,21 @@ body{width:50%; margin:auto;display: flex;flex-direction: column; min-width: 110
         width: 300px;
         text-align: center;
         line-height: 54px;}
+
+
+#CartInfo{padding:10px;}
+#CartMini{padding: 10px;
+        width: 300px;
+        border: 1px black solid;
+        position: absolute;
+        display:none;
+        background-color:white;
+        height: 300px; overflow-y:auto}
+#CartMiniItem{text-align: center; display:flex; padding:2px; margin-bottom:20px}
+#CartMiniImage{width:130px}
+#CartMiniTotalPrice{border-top:1px solid black; padding-top:20px}
+
+
+
     
  

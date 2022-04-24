@@ -170,6 +170,8 @@ function productCategoryView()
 //Loop should be here, remove this later when done
 function productDetailView()
 {
+
+
    $('#Content').html(`
    <div id="ProductWholeDetailView"> 
     <img src="./images/amdDeals.jpg" id="DetailViewIamges">
@@ -187,9 +189,9 @@ function productDetailView()
       </div>
     </div>
   <div id="ProductInfoButtons">
-   <div id="ProductInfoButton">Hello</div>
-   <div id="ProductInfoButton">Hello</div>
-   <div id="ProductInfoButton">Hello</div>
+   <div id="ProductInfoButton" onclick="productInfoAreaClick()">Info</div>
+   <div id="ProductInfoButton" onclick="productInfoAreaClick()">Hello</div>
+   <div id="ProductInfoButton" onclick="productInfoAreaClick()">Hello</div>
   </div>
   <div id="ProductInfoArea">
    <div>Hello</div>
@@ -200,6 +202,13 @@ function productDetailView()
    `
    );
 }
+
+function productInfoAreaClick()
+{
+$('#ProductInfoArea').html(`<div>test</div>`)
+}
+
+
 
 //Loop will be done a bit later, this is just for testing.
 // The structure of the HTML will be different, on a later date
@@ -214,8 +223,8 @@ function sideBar(){
    };
    
    //This should show the right subcategories based from the category unique id, will be implemented later, will loop trough all the subcategories
-   //!!!!!!Right now the css styling is so that it will have an absolute position that will be different based on display size,!!!!fix this later!!!!
-   // The structure of the HTML will be different, on a later date
+   //The structure of the HTML will be different, on a later date
+
    function subCategory()
    {
       $('#subCategory').html(`
@@ -231,7 +240,26 @@ function sideBar(){
 // The structure of the HTML will be different, on a later date
 function cart()
 {
-$('#Content').html(`<div>Cart</div>`)
+$('#Content').html(`
+
+
+
+
+
+
+<div>Cart</div>
+<div id="WholeCart">
+ <div>Stuff</div>
+ <div>Stuff</div>
+ <div>Stuff</div>
+</div>
+
+
+
+
+
+
+`)
 }
 
 
@@ -256,6 +284,78 @@ $('#Content').html(`
 `)
 }
 
+//Loop later, use jquery each()
+//For showing the small shopping cart
+$('#CartInfo').mouseenter(function()
+{
+$('#CartMini').css('display', 'block')
+$('#CartMini').html(`
+
+<div>Cart</div>
+ <div id="CartMiniItem">
+  <img src="./images/amdDeals.jpg" id="CartMiniImage">
+  <div>
+ 
+   <div>6600XT</div>
+   <div>In stock</div>
+   <div>Add more products</div>
+ 
+  </div>
+  <div>Price</div>
+ 
+ </div>
+
+ <div id="CartMiniItem">
+ <img src="./images/amdDeals.jpg" id="CartMiniImage">
+ <div>
+
+  <div>6600XT</div>
+  <div>In stock</div>
+  <div>Add more products</div>
+
+ </div>
+ <div>Price</div>
+
+</div>
+
+<div id="CartMiniItem">
+<img src="./images/amdDeals.jpg" id="CartMiniImage">
+<div>
+
+ <div>6600XT</div>
+ <div>In stock</div>
+ <div>Add more products</div>
+
+</div>
+<div>Price</div>
+
+</div>
+
+<div id="CartMiniItem">
+<img src="./images/amdDeals.jpg" id="CartMiniImage">
+<div>
+
+ <div>6600XT</div>
+ <div>In stock</div>
+ <div>Add more products</div>
+
+</div>
+<div>Price</div>
+
+</div>
+
+ <div id="CartMiniTotalPrice">Total Price stuff</div>
+
+ <div>Buttons</div>
+
+ 
+`)
+
+}
+
+).mouseleave(function(){$('#CartMini').css('display', 'none')})
+
+
 
 function AboutUs(){$('#Content').html(`
 
@@ -273,6 +373,14 @@ $('#Categories').on("click",function(){
          $('#subCategory').toggleClass("show"); $('#SideBar').toggleClass("show")
    } 
    else {sideBar()}});
+
+
+
+
+
+
+
+
 
 
 function searchBar(){}
