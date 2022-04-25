@@ -247,11 +247,14 @@ $('#Content').html(`
 
 
 
-<div>Cart</div>
+<div id="CartTitle">Cart</div>
 <div id="WholeCart">
+<div id="CartProduct">
+ <img src="./images/amdDeals.jpg" id="CartImage">
  <div>Stuff</div>
  <div>Stuff</div>
- <div>Stuff</div>
+</div>
+ 
 </div>
 
 
@@ -262,36 +265,17 @@ $('#Content').html(`
 `)
 }
 
-
-
-// The structure of the HTML will be slightly different, on a later date
-function login()
-{
-$('#Content').html(`
-
-
-<div id="LoginAndRegister"> 
- <div id="LoginAndRegisterBox">
-  <div onclick="frontPage()"> Go back </div>
-  <div>Register or login here</div>
-  <div>Email: <input type="email"></input></div>
-  <div>Password: <input type="password"></input> </div>
-  <div>Login or register</div>
- </div>
-</div>
-
-
-`)
-}
 
 //Loop later, use jquery each()
 //For showing the small shopping cart
-$('#CartInfo').mouseenter(function()
+
+$('#CartInfo').on('mouseover',function()
 {
-$('#CartMini').css('display', 'block')
+timer = setTimeout(function(){$('#CartMini').show()
+//For loop or for each() here
 $('#CartMini').html(`
 
-<div>Cart</div>
+<div id="CartMiniTitle">Cart</div>
  <div id="CartMiniItem">
   <img src="./images/amdDeals.jpg" id="CartMiniImage">
   <div>
@@ -349,11 +333,40 @@ $('#CartMini').html(`
  <div>Buttons</div>
 
  
-`)
+`)},500);
+
 
 }
 
-).mouseleave(function(){$('#CartMini').css('display', 'none')})
+).on('mouseout',function(){
+  
+   clearTimeout(timer)
+   $('#CartMini').hide()
+   
+})
+
+
+
+// The structure of the HTML will be slightly different, on a later date
+function login()
+{
+$('#Content').html(`
+
+
+<div id="LoginAndRegister"> 
+ <div id="LoginAndRegisterBox">
+  <div onclick="frontPage()"> Go back </div>
+  <div>Register or login here</div>
+  <div>Email: <input type="email"></input></div>
+  <div>Password: <input type="password"></input> </div>
+  <div>Login or register</div>
+ </div>
+</div>
+
+
+`)
+}
+
 
 
 
@@ -383,10 +396,14 @@ $('#Categories').on("click",function(){
 
 
 
-function searchBar(){}
+function searchBar()
+{
 
 
+}
 
+
+//For testing
 const category = 
     [    
      {
