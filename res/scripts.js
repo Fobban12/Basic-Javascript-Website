@@ -21,42 +21,43 @@ $('#Content').html(`
     </div>
    </div>
    `
-   );
-   //For showing products on the Main page for the popular tag
+   );  
+   //The next two loops are for showing the recommended and popular products by (tag??), by hand at the moment.
    for (let i=0; i < productsTest.length; i++)
    {
+   let productPopular = $("<div></div>").html(`
+   <div id="Product">
+    <img src="${productsTest[i].Image}" id="ProductPictures">
+    <div>${productsTest[i].Name}</div>
+    <div>${productsTest[i].Info}</div>
+    <div>${productsTest[i].Info2}</div>
+    <div>${productsTest[i].Price}€</div>
+    </div>
+     ` )
    
-   $('#ProductsPopular').append(`
-    <div id="Product">
-     <img src="${productsTest[i].Image}" id="ProductPictures">
-     <div>${productsTest[i].Name}</div>
-     <div>${productsTest[i].Info}</div>
-     <div>-Info</div>
-     <div>-Info</div>
-     <div>-Info</div>
-     <div>${productsTest[i].Price}€</div>
-   </div>
-   `
-      )
-     }
+   $(productPopular).on('click',function(){productDetailView(productsTest[i])})
+   $('#ProductsPopular').append(productPopular)
+     
+    }
+    
+
+
+
    for (let i=0; i < productsTest2.length; i++)
    {
-      $('#ProductsRecommended').append(`
+      let productRecommended = $('<div></div>').html(`
       <div id="Product">
-       <img src="${productsTest[i].Image}" id="ProductPictures">
-       <div>${productsTest[i].Name}</div>
-       <div>${productsTest[i].Info}</div>
-       <div>-Info</div>
-       <div>-Info</div>
-       <div>-Info</div>
-       <div>${productsTest[i].Price}€</div>
-     </div>
-     `
-        )
-
+       <img src="${productsTest2[i].Image}" id="ProductPictures">
+       <div id=InfoText>${productsTest2[i].Name}</div>
+       <div id=InfoText>${productsTest2[i].Info}</div>
+       <div id=InfoText>${productsTest2[i].Info2}</div>
+       <div id=InfoText>${productsTest2[i].Price}€</div>
+       </div>
+        ` )
+       $(productRecommended).on('click',function(){productDetailView(productsTest[i])})
+       $('#ProductsRecommended').append(productRecommended)
    }
-
-
+ 
 };
 
 
@@ -128,15 +129,15 @@ $('#Content').html(`
 // A loop here, and the data should come from the pressed product ID tree: Category -> SubCategory -> Specific product
 // The structure of the HTML will be different, on a later date
 //Loop should be here, remove this later when done
-function productDetailView()
+function productDetailView(product)
 {
 
 
    $('#Content').html(`
    <div id="ProductWholeDetailView"> 
-    <img src="./images/amdDeals.jpg" id="DetailViewIamges">
+    <img src="${product.Image}" id="DetailViewIamges">
       <div>
-       <div>RX 6600XT</div>
+       <div>${product.Name}</div>
        <div>RX 6600XT</div>
        <div>RX 6600XT</div>
        <div>RX 6600XT</div>
@@ -387,7 +388,7 @@ const category =
     ]
 
 const productsTest = [{id:1,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:2,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:2,Name:"Different text here", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
 {id:3,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
 {id:4,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
 {id:5,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
@@ -416,7 +417,7 @@ const productsTest = [{id:1,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Pric
 
 
 const productsTest2 = [{id:1,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:2,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:2,Name:"This should change if pressed", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
 {id:3,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
 {id:4,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
 {id:5,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
