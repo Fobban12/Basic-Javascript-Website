@@ -13,11 +13,17 @@
 
 #FrontPageTitle{font-size:20px; 
     font-weight:bold}
-#Products{ margin-top:20px;  
+#ProductsPopular{ margin-top:20px;  
     margin-bottom:20px; 
     display: flex; 
     justify-content: space-between; 
     overflow-x:auto}
+#ProductsRecommended{ margin-top:20px;  
+        margin-bottom:20px; 
+        display: flex; 
+        justify-content: space-between; 
+        overflow-x:auto}
+
 #Product{padding:13px;
      background-color: ghostwhite;}
 #ProductPictures{width:390px;}

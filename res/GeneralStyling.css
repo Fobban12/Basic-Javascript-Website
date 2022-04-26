@@ -52,14 +52,15 @@ body{width:50%; margin:auto;display: flex;flex-direction: column; min-width: 110
         line-height: 54px;}
 
 
-#CartInfo{padding:10px;}
+#CartInfo{padding:10px; margin-right:70px}
 #CartMini{padding: 10px;
         width: 300px;
         border: 1px black solid;
         position: absolute;
         display:none;
         background-color:white;
-        height: 300px; overflow-y:auto}
+        height: 450px; overflow-y:auto;
+    }
 #CartMiniTitle{padding:10px; border-bottom: 1px solid black; margin-bottom:5px}
 #CartMiniItem{text-align: center; display:flex; padding:2px; margin-bottom:20px}
 #CartMiniImage{width:130px}

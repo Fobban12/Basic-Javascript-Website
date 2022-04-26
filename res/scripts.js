@@ -2,93 +2,62 @@
 //Loop should be here, remove this later when done
 //Pictures should come from the database
 function frontPage(){
+$('#Content').html(`
+   <div>
+    <div id="Deals">
+     <img src="./images/amdDeals.jpg" id="DealPictures"></img>
+     <img src="./images/amdDeals.jpg" id="DealPictures"></img>
+     <img src="./images/amdDeals.jpg" id="DealPictures"></img>
+     <img src="./images/amdDeals.jpg" id="DealPictures"></img>
+    </div>
+   
+    <div id="FrontPageTitle">Popular</div>
+    <div id="ProductsPopular">
+    </div>
+   
+   <div id="FrontPageTitle">Recommended</div>
+    <div id="ProductsRecommended">
+     
+    </div>
+   </div>
+   `
+   );
+   //For showing products on the Main page for the popular tag
+   for (let i=0; i < productsTest.length; i++)
+   {
+   
+   $('#ProductsPopular').append(`
+    <div id="Product">
+     <img src="${productsTest[i].Image}" id="ProductPictures">
+     <div>${productsTest[i].Name}</div>
+     <div>${productsTest[i].Info}</div>
+     <div>-Info</div>
+     <div>-Info</div>
+     <div>-Info</div>
+     <div>${productsTest[i].Price}€</div>
+   </div>
+   `
+      )
+     }
+   for (let i=0; i < productsTest2.length; i++)
+   {
+      $('#ProductsRecommended').append(`
+      <div id="Product">
+       <img src="${productsTest[i].Image}" id="ProductPictures">
+       <div>${productsTest[i].Name}</div>
+       <div>${productsTest[i].Info}</div>
+       <div>-Info</div>
+       <div>-Info</div>
+       <div>-Info</div>
+       <div>${productsTest[i].Price}€</div>
+     </div>
+     `
+        )
+
+   }
 
 
-
-//For Loop here
-
-
-
-//The excess stuff will be removed when the loop is done
-   $('#Content').html(`
-<div>
- <div id="Deals">
-  <img src="./images/amdDeals.jpg" id="DealPictures"></img>
-  <img src="./images/amdDeals.jpg" id="DealPictures"></img>
-  <img src="./images/amdDeals.jpg" id="DealPictures"></img>
-  <img src="./images/amdDeals.jpg" id="DealPictures"></img>
- </div>
-
- <div id="FrontPageTitle">Recommended for you</div>
- <div id="Products">
-
-  <div id="Product">
-   <img src="./images/amdDeals.jpg" id="ProductPictures">
-   <div>AMD Radeon 6600XT</div>
-   <div>-Info</div>
-   <div>-Info</div>
-   <div>-Info</div>
-   <div>-Info</div>
-   <div>600€</div>
-</div>
-
-
-  <div id="Product">
-  <img src="./images/amdDeals.jpg" id="ProductPictures">
-  <div>AMD Radeon 6600XT</div>
-  <div>-Info</div>
-  <div>-Info</div>
-  <div>-Info</div>
-  <div>-Info</div>
-  <div>600€</div>
- </div>
-
- <div id="Product">
- <img src="./images/amdDeals.jpg" id="ProductPictures">
- <div>AMD Radeon 6600XT</div>
- <div>-Info</div>
- <div>-Info</div>
- <div>-Info</div>
- <div>-Info</div>
- <div>600€</div>
-</div>
-
-<div id="Product">
-<img src="./images/amdDeals.jpg" id="ProductPictures">
-<div>AMD Radeon 6600XT</div>
-<div>-Info</div>
-<div>-Info</div>
-<div>-Info</div>
-<div>-Info</div>
-<div>600€</div>
-</div>
-</div>
-
-<div id="FrontPageTitle">Popular</div>
- <div id="Products">
-  <div id="Product">
-   <img src="./images/amdDeals.jpg" id="ProductPictures">
-   <div>Name</div>
-   <div>Price</div>
-  </div>
-
-  <div id="Product">
-   <img src="./images/amdDeals.jpg" id="ProductPictures">
-   <div>Name</div>
-   <div>Price</div>
-  </div>
-  
-  <div id="Product">
-   <img src="./images/amdDeals.jpg" id="ProductPictures">
-   <div>Name</div>
-   <div>Price</div>
-  </div>
- </div>
-
- 
-</div>
-`
-);}
+};
 
 
 // Data that comes should be based on the pressed categorys unique ID, so in other words, it will show the items that the category ID is assigned to.
@@ -96,16 +65,7 @@ function frontPage(){
 // The structure of the HTML will be different, on a later date
 function productCategoryView()
 {
-
- //Loop here
-
-
-
-
-
-
-
-   $('#Content').html(`
+$('#Content').html(`
 
    <div id="CategoryTitle">Graphic Cards</div>
 
@@ -268,11 +228,6 @@ $('#Content').html(`
 
 //Loop later, use jquery each()
 //For showing the small shopping cart
-
-$('#CartInfo').on('mouseover',function()
-{
-timer = setTimeout(function(){$('#CartMini').show()
-//For loop or for each() here
 $('#CartMini').html(`
 
 <div id="CartMiniTitle">Cart</div>
@@ -333,16 +288,15 @@ $('#CartMini').html(`
  <div>Buttons</div>
 
  
-`)},500);
-
+`)
+$('#CartInfo').on('mouseover',function()
+{
+$('#CartMini').show()
 
 }
 
 ).on('mouseout',function(){
-  
-   clearTimeout(timer)
    $('#CartMini').hide()
-   
 })
 
 
@@ -432,10 +386,61 @@ const category =
    }
     ]
 
+const productsTest = [{id:1,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:2,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:3,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:4,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:5,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:6,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:7,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"}
+
+]
 
 
-
-
+const productsTest2 = [{id:1,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:2,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:3,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:4,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:5,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:6,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:7,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
+{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"}
+]
 
 
 
