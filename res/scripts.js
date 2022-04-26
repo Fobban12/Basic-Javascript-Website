@@ -54,7 +54,7 @@ $('#Content').html(`
        <div id=InfoText>${productsTest2[i].Price}€</div>
        </div>
         ` )
-       $(productRecommended).on('click',function(){productDetailView(productsTest[i])})
+       $(productRecommended).on('click',function(){productDetailView(productsTest2[i])})
        $('#ProductsRecommended').append(productRecommended)
    }
  
@@ -72,58 +72,28 @@ $('#Content').html(`
 
    <div id="CategoryProducts">
 
-
-    <div id ="CategoryProduct" onclick="productDetailView()">
-      <img src="./images/amdDeals.jpg" id="CategoryImages"> 
-      <div id="CategoryInfo">Title</div>
-      <div id="CategoryInfo">Short Info</div> 
-      <div id="CategoryInfo">Availability:1</div> 
-      <div id="CategoryInfo">Add to cart</div>  
-    </div>
-
-    <div id ="CategoryProduct" onclick="productDetailView()">
-      <img src="./images/amdDeals.jpg" id="CategoryImages"> 
-      <div id="CategoryInfo">Title</div>
-      <div id="CategoryInfo">Short Info</div> 
-      <div id="CategoryInfo">Availability:1</div> 
-      <div id="CategoryInfo">Add to cart</div>  
-    </div>
-
-    <div id ="CategoryProduct" onclick="productDetailView()">
-      <img src="./images/amdDeals.jpg" id="CategoryImages"> 
-      <div id="CategoryInfo">Title</div>
-      <div id="CategoryInfo">Short Info</div> 
-      <div id="CategoryInfo">Availability:1</div> 
-      <div id="CategoryInfo">Add to cart</div>  
-    </div>
-
-    <div id ="CategoryProduct" onclick="productDetailView()">
-      <img src="./images/amdDeals.jpg" id="CategoryImages"> 
-      <div id="CategoryInfo">Title</div>
-      <div id="CategoryInfo">Short Info</div> 
-      <div id="CategoryInfo">Availability:1</div> 
-      <div id="CategoryInfo">Add to cart</div>  
-    </div>
-
-    <div id ="CategoryProduct" onclick="productDetailView()">
-      <img src="./images/amdDeals.jpg" id="CategoryImages"> 
-      <div id="CategoryInfo">Title</div>
-      <div id="CategoryInfo">Short Info</div> 
-      <div id="CategoryInfo">Availability:1</div> 
-      <div id="CategoryInfo">Add to cart</div>  
-    </div>
-
-    <div id ="CategoryProduct" onclick="productDetailView()">
-      <img src="./images/amdDeals.jpg" id="CategoryImages"> 
-      <div id="CategoryInfo">Title</div>
-      <div id="CategoryInfo">Short Info</div> 
-      <div id="CategoryInfo">Availability:1</div> 
-      <div id="CategoryInfo">Add to cart</div>  
-    </div>
-
    </div>
    `
    );
+
+
+   for (let i=0; i < productsTest2.length; i++)
+   {
+      let Category = $('<div></div>').html(`
+      <div id ="CategoryProduct">
+      <img src="${productsTest2[i].Image}" id="CategoryImages"> 
+      <div id="CategoryInfo">${productsTest2[i].Name}</div>
+      <div id="CategoryInfo">${productsTest2[i].Info}</div> 
+      <div id="CategoryInfo">Availability:${productsTest2[i].id}</div> 
+      <div id="CategoryInfo">Price:${productsTest2[i].Price}€</div> 
+      <div id="CategoryInfo">Add to cart</div>  
+    </div>
+        ` )
+       $(Category).on('click',function(){productDetailView(productsTest2[i])})
+       $('#CategoryProducts').append(Category)
+   }
+
+
 }
 
 // A loop here, and the data should come from the pressed product ID tree: Category -> SubCategory -> Specific product
@@ -138,14 +108,10 @@ function productDetailView(product)
     <img src="${product.Image}" id="DetailViewIamges">
       <div>
        <div>${product.Name}</div>
-       <div>RX 6600XT</div>
-       <div>RX 6600XT</div>
-       <div>RX 6600XT</div>
-       <div>RX 6600XT</div>
       </div>
 
       <div>
-       <div>Price: 350€ </div>
+       <div>Price: ${product.Price}€ </div>
        <div>Add to cart</div>
       </div>
     </div>
@@ -171,18 +137,29 @@ $('#ProductInfoArea').html(`<div>test</div>`)
 
 
 
-//Loop will be done a bit later, this is just for testing.
-// The structure of the HTML will be different, on a later date
+
 function sideBar(){
+
    $('#SideBar').html(`
     <div id="sideBarCSS">
-     <div id="sideBarNames"> <span onclick="productCategoryView()">${category[0].Name}</span> <button id="categoryArrow" onclick="subCategory()"> > </button></div>
-     <div id="sideBarNames"> <span onclick="productCategoryView()">${category[1].Name}</span> <button id="categoryArrow" onclick="subCategory()"> > </button></div>
-     <div id="sideBarNames"> <span onclick="productCategoryView()">${category[2].Name}</span> <button id="categoryArrow" onclick="subCategory()"> > </button></div>
+   
     </div>
     `),$('#SideBar').toggleClass("show")
+
+    for (let i=0; i < category.length; i++) 
+    {
+       let Test = $('<div></div>').html(`
+        <div id="sideBarNames"> <span onclick="productCategoryView()">${category[i].Name}</span> <button id="categoryArrow" onclick="subCategory()"> > </button></div>
+         ` )
+        $('#sideBarCSS').append(Test)
+    }
+
+  
+
    };
-   
+
+
+
    //This should show the right subcategories based from the category unique id, will be implemented later, will loop trough all the subcategories
    //The structure of the HTML will be different, on a later date
 
@@ -198,13 +175,28 @@ function sideBar(){
      };
    
 
+//Shows and hides the sidebar, and will also hide the subCategory if shown
+$('#Categories').on("click",function(){
+   if ($('#subCategory').hasClass("show") == true)
+   {
+        $('#subCategory').toggleClass("show"); $('#SideBar').toggleClass("show")
+   } 
+  else {sideBar()}});
+
+
+
+
+
+
+
+
+
+
+
 // The structure of the HTML will be different, on a later date
 function cart()
 {
 $('#Content').html(`
-
-
-
 
 
 
@@ -334,13 +326,6 @@ function AboutUs(){$('#Content').html(`
 `)}
 
 
-//Shows and hides the sidebar, and will also hide the subCategory if shown
-$('#Categories').on("click",function(){
-   if ($('#subCategory').hasClass("show") == true)
-   {
-         $('#subCategory').toggleClass("show"); $('#SideBar').toggleClass("show")
-   } 
-   else {sideBar()}});
 
 
 
