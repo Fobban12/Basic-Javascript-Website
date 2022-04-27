@@ -64,11 +64,11 @@ $('#Content').html(`
 // Data that comes should be based on the pressed categorys unique ID, so in other words, it will show the items that the category ID is assigned to.
 //Loop should be here, remove this later when done
 // The structure of the HTML will be different, on a later date
-function productCategoryView()
+function productCategoryView(CategoryClick)
 {
 $('#Content').html(`
 
-   <div id="CategoryTitle">Graphic Cards</div>
+   <div id="CategoryTitle">${CategoryClick}</div>
 
    <div id="CategoryProducts">
 
@@ -89,7 +89,7 @@ $('#Content').html(`
       <div id="CategoryInfo">Add to cart</div>  
     </div>
         ` )
-       $(Category).on('click',function(){productDetailView(productsTest2[i])})
+       $(Category).on('click',function(){productDetailView(productsTest2[i])});
        $('#CategoryProducts').append(Category)
    }
 
@@ -136,26 +136,30 @@ $('#ProductInfoArea').html(`<div>test</div>`)
 }
 
 
-
-
 function sideBar(){
 
    $('#SideBar').html(`
     <div id="sideBarCSS">
    
     </div>
+    
     `),$('#SideBar').toggleClass("show")
 
     for (let i=0; i < category.length; i++) 
     {
-       let Test = $('<div></div>').html(`
-        <div id="sideBarNames"> <span onclick="productCategoryView()">${category[i].Name}</span> <button id="categoryArrow" onclick="subCategory()"> > </button></div>
+       let CategoryPrint = $('<div></div>').html(`
+        <div id="sideBarNames"> <span onclick="productCategoryView()">${category[i].Name}</span> </div>
+      
          ` )
-        $('#sideBarCSS').append(Test)
+      let CategoryArrow = $('<div></div>').html(`<button id="categoryArrow" > > </button>`)
+
+      $(CategoryArrow).on('click',function(){subCategory()})
+      $('#sideBarCSS').append(CategoryArrow)
+      $(CategoryPrint).on('click',function(){productCategoryView(category[i].Name)})
+      $('#sideBarCSS').append(CategoryPrint)
+
+     
     }
-
-  
-
    };
 
 
