@@ -121,7 +121,7 @@ function productDetailView(product)
    <div id="ProductInfoButton" onclick="productInfoAreaClick()">Hello</div>
   </div>
   <div id="ProductInfoArea">
-   <div>Hello</div>
+   <div>Test</div>
    <div>Hello</div>
    <div>Hello</div>
   </div>
