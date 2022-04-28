@@ -4,12 +4,15 @@ function start(){
    frontPage();
    cartMini();
 
+
+   //RemoveButton
    var removeButton = $('.btn-danger')
    for (let i=0; i < removeButton.length; i++)
    {
     var button = removeButton[i]
     $(button).on('click', removeMiniCartItem)
    }
+   //Change quantity on miniCart
    var quantityInput = $('.CartMiniQuantity')
    for (let i=0; i < quantityInput.length; i++){
 
