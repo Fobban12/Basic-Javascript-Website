@@ -1,3 +1,26 @@
+//For starting the page.
+
+function start(){
+   frontPage();
+   cartMini();
+
+   var removeButton = $('.btn-danger')
+   for (let i=0; i < removeButton.length; i++)
+   {
+    var button = removeButton[i]
+    $(button).on('click', removeMiniCartItem)
+   }
+   var quantityInput = $('.CartMiniQuantity')
+   for (let i=0; i < quantityInput.length; i++){
+
+    var input = quantityInput[i]
+
+    $(input).on('change',quantityChanged)
+
+   }
+}
+
+
 
 //Loop should be here, remove this later when done
 //Pictures should come from the database
@@ -85,8 +108,7 @@ $('#Content').html(`
       <div id="CategoryInfo">${productsTest2[i].Name}</div>
       <div id="CategoryInfo">${productsTest2[i].Info}</div> 
       <div id="CategoryInfo">Availability:${productsTest2[i].id}</div> 
-      <div id="CategoryInfo">Price:${productsTest2[i].Price}€</div> 
-      <div id="CategoryInfo">Add to cart</div>  
+      <div id="CategoryInfo">Price:${productsTest2[i].Price}€</div>   
     </div>
         ` )
        $(Category).on('click',function(){productDetailView(productsTest2[i])});
@@ -112,7 +134,7 @@ function productDetailView(product)
 
       <div>
        <div>Price: ${product.Price}€ </div>
-       <div>Add to cart</div>
+       <div id="AddToCartButton"><button>Add to cart</button></div>
       </div>
     </div>
   <div id="ProductInfoButtons">
@@ -184,24 +206,15 @@ $('#Categories').on("click",function(){
    if ($('#subCategory').hasClass("show") == true)
    {
         $('#subCategory').toggleClass("show"); $('#SideBar').toggleClass("show")
+
    } 
   else {sideBar()}});
-
-
-
-
-
-
-
-
-
 
 
 // The structure of the HTML will be different, on a later date
 function cart()
 {
 $('#Content').html(`
-
 
 
 <div id="CartTitle">Cart</div>
@@ -211,94 +224,96 @@ $('#Content').html(`
  <div>Stuff</div>
  <div>Stuff</div>
 </div>
- 
 </div>
-
-
-
-
-
-
 `)
 }
 
 
 //Loop later, use jquery each()
 //For showing the small shopping cart
+//Will add the ability to add to this cart and the main one with the database
+function cartMini(){
 $('#CartMini').html(`
 
-<div id="CartMiniTitle">Cart</div>
- <div id="CartMiniItem">
+ <div id="CartMiniTitle">Cart</div>
+ <div class="CartMiniItem">
   <img src="./images/amdDeals.jpg" id="CartMiniImage">
-  <div>
- 
+  <div class="CartMiniInfo">
    <div>6600XT</div>
-   <div>In stock</div>
+   <input class="CartMiniQuantity" type="number" value="1"></input>
    <div>Add more products</div>
- 
   </div>
-  <div>Price</div>
+
+  <div id="RemoveItemButton"><button class="btn-danger">Remove</button></div>
+  <div class="CartMiniPrice">${500}€</div>
  
  </div>
 
- <div id="CartMiniItem">
+ <div class="CartMiniItem">
  <img src="./images/amdDeals.jpg" id="CartMiniImage">
- <div>
+ <div  class="CartMiniInfo">
 
   <div>6600XT</div>
-  <div>In stock</div>
+  <input class="CartMiniQuantity" type="number" value="1"></input>
   <div>Add more products</div>
 
  </div>
- <div>Price</div>
+ <div id="RemoveItemButton"><button class="btn-danger">Remove</button></div>
+ <div class="CartMiniPrice">${2000}€</div>
 
 </div>
-
-<div id="CartMiniItem">
-<img src="./images/amdDeals.jpg" id="CartMiniImage">
-<div>
-
- <div>6600XT</div>
- <div>In stock</div>
- <div>Add more products</div>
-
-</div>
-<div>Price</div>
-
 </div>
 
-<div id="CartMiniItem">
-<img src="./images/amdDeals.jpg" id="CartMiniImage">
-<div>
 
- <div>6600XT</div>
- <div>In stock</div>
- <div>Add more products</div>
-
-</div>
-<div>Price</div>
-
-</div>
-
- <div id="CartMiniTotalPrice">Total Price stuff</div>
+ <div id="CartMiniTotalPrice">${2500}€</div>
 
  <div>Buttons</div>
 
  
-`)
-$('#CartInfo').on('mouseover',function()
-{
-$('#CartMini').show()
-
-}
-
-).on('mouseout',function(){
-   $('#CartMini').hide()
+`);$('#CartInfo').on('mouseover',function(){$('#CartMini')
+.show()})
+.on('mouseout',function(){$('#CartMini').hide()
 })
+};
+
+//This is for removing items from minicart
+  
+  function removeMiniCartItem(event)
+  {
+   var buttonClicked = event.target
+   $(buttonClicked).parent('#RemoveItemButton').parent('.CartMiniItem').remove()
+   updateMiniCartTotal()
+  }
+//This is for changing the quantity in the MiniCart
+   function quantityChanged(event){
+        var input = event.target
+        if (isNaN(input.value) || input.value <= 0){
+           input.value = 1
+         }
+         updateMiniCartTotal()
+     }
+
+// This is for updating the price for the cart
+   function updateMiniCartTotal(){
+         var miniCartItemContainer = $("#CartMini")[0]
+         var cartItems = $(miniCartItemContainer).children(".CartMiniItem")
+         var total = 0
+         for(let i =0; i < cartItems.length; i++){
+
+            var cartItem = cartItems[i]
+            var priceElement = $(cartItem).children('.CartMiniPrice')[0]
+            var quantityElement = $(cartItem).children('.CartMiniInfo').children('.CartMiniQuantity')[0]
+            var price = parseFloat($(priceElement).text().replace('€',''))
+            var quantity = $(quantityElement).parent().find('input').val()
+            total = total + (price * quantity)
+         }
+         total = Math.round(total * 100) / 100
+         $('#CartMiniTotalPrice').text(total+"€")[0]
+   }
 
 
-
-// The structure of the HTML will be slightly different, on a later date
+//The structure of the HTML will be slightly different, on a later date
+//The actual login and registaration will be done later, if done at all
 function login()
 {
 $('#Content').html(`
@@ -319,27 +334,7 @@ $('#Content').html(`
 }
 
 
-
-
-function AboutUs(){$('#Content').html(`
-
-
-<div>About us stuff</div>
-
-
-`)}
-
-
-
-
-
-
-
-
-
-
-
-
+// This will be done after login, if I have the time for it.
 function searchBar()
 {
 
