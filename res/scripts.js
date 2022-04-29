@@ -228,7 +228,7 @@ $('#Categories').on("click",function(){
   else {sideBar()}});
 
 
-// The structure of the HTML will be different, on a later date
+//The structure of the HTML will be different, on a later date
 function cart()
 {
 $('#Content').html(`
@@ -246,7 +246,6 @@ $('#Content').html(`
 }
 
 
-//Loop later, use jquery each()
 //For showing the small shopping cart
 //Will add the ability to add to this cart and the main one with the database
 function cartMini(){
@@ -270,7 +269,7 @@ $('#CartMini').html(`
 })
 };
 
-
+//Function for adding product to cart
 function addtoMiniCartClicked(event){
    var button = event.target
    var productItem = $(button).parent()
@@ -279,7 +278,7 @@ function addtoMiniCartClicked(event){
    var productImage = $(productItem).children('#DetailViewImages').attr('src')
   
    
-   var loop = [{name:productName, price:productPrice, image:productImage}]
+var loop = [{name:productName, price:productPrice, image:productImage}]
 for (let i=0; i < loop.length; i++) 
    {
   
@@ -371,7 +370,7 @@ function searchBar()
 }
 
 
-//For testing
+//For testing, remove when database done
 const category = 
     [    
      {
@@ -400,6 +399,7 @@ const category =
    }
     ]
 
+//For testing, remove when database done
 const productsTest = [{id:1,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
 {id:2,Name:"Different text here", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
 {id:3,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
@@ -428,7 +428,7 @@ const productsTest = [{id:1,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Pric
 
 ]
 
-
+//For testing, remove when database done
 const productsTest2 = [{id:1,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
 {id:2,Name:"This should change if pressed", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
 {id:3,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
