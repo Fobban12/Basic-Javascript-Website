@@ -1,24 +1,3 @@
-//For starting the page.
-
-function start(){
-   frontPage();
-   cartMini();
-
-   var removeButton = $('.btn-danger')
-   for (let i=0; i < removeButton.length; i++)
-   {
-    var button = removeButton[i]
-    $(button).on('click', removeMiniCartItem)
-   }
-   var quantityInput = $('.CartMiniQuantity')
-   for (let i=0; i < quantityInput.length; i++){
-
-    var input = quantityInput[i]
-
-    $(input).on('change',quantityChanged)
-
-   }
-}
 
 
 
@@ -90,7 +69,7 @@ $('#Content').html(`
 function productCategoryView(CategoryClick)
 {
 $('#Content').html(`
-
+   <div id="GoBackButton"> Go back</div>
    <div id="CategoryTitle">${CategoryClick}</div>
 
    <div id="CategoryProducts">
@@ -98,7 +77,7 @@ $('#Content').html(`
    </div>
    `
    );
-
+   $('#GoBackButton').on('click', function(){frontPage()})
 
    for (let i=0; i < productsTest2.length; i++)
    {
@@ -108,7 +87,7 @@ $('#Content').html(`
       <div id="CategoryInfo">${productsTest2[i].Name}</div>
       <div id="CategoryInfo">${productsTest2[i].Info}</div> 
       <div id="CategoryInfo">Availability:${productsTest2[i].id}</div> 
-      <div id="CategoryInfo">Price:${productsTest2[i].Price}€</div>   
+      <div id="CategoryInfo">Price:${productsTest2[i].Price}</div>   
     </div>
         ` )
        $(Category).on('click',function(){productDetailView(productsTest2[i])});
@@ -118,24 +97,24 @@ $('#Content').html(`
 
 }
 
+
 // A loop here, and the data should come from the pressed product ID tree: Category -> SubCategory -> Specific product
 // The structure of the HTML will be different, on a later date
 //Loop should be here, remove this later when done
 function productDetailView(product)
 {
 
-
    $('#Content').html(`
+   <div id="GoBackButton"> Go back</div>
    <div id="ProductWholeDetailView"> 
-    <img src="${product.Image}" id="DetailViewIamges">
-      <div>
-       <div>${product.Name}</div>
-      </div>
+    <img src="${product.Image} "id="DetailViewImages">
+     
+       <div id="ProductWholeDetailViewName">${product.Name}</div>
+    
 
-      <div>
-       <div>Price: ${product.Price}€ </div>
-       <div id="AddToCartButton"><button>Add to cart</button></div>
-      </div>
+       <div id="ProductWholeDetailViewPrice">${product.Price}€</div>
+      <button id="AddToCartButton">Add to cart</button>
+      
     </div>
   <div id="ProductInfoButtons">
    <div id="ProductInfoButton" onclick="productInfoAreaClick()">Info</div>
@@ -150,7 +129,16 @@ function productDetailView(product)
 
    `
    );
+   $('#GoBackButton').on('click', function(){frontPage()})
+     //Add to minicart
+     var addtoMiniCart = $('#AddToCartButton')
+     for (let i=0; i < addtoMiniCart.length; i++){
+          var button = addtoMiniCart[i]
+          $(button).on('click', addtoMiniCartClicked)
+     }
+     
 }
+
 
 function productInfoAreaClick()
 {
@@ -170,7 +158,7 @@ function sideBar(){
     for (let i=0; i < category.length; i++) 
     {
        let CategoryPrint = $('<div></div>').html(`
-        <div id="sideBarNames"> <span onclick="productCategoryView()">${category[i].Name}</span> </div>
+        <div id="sideBarNames"> <span>${category[i].Name}</span> </div>
       
          ` )
       let CategoryArrow = $('<div></div>').html(`<button id="categoryArrow" > > </button>`)
@@ -191,13 +179,17 @@ function sideBar(){
 
    function subCategory()
    {
-      $('#subCategory').html(`
-      <div>
-       <div id="sideBarNames" onclick="productCategoryView()">${category[1].Name}</div>
-       <div id="sideBarNames" onclick="productCategoryView()">${category[0].Name}</div>
-       <div id="sideBarNames" onclick="productCategoryView()">${category[2].Name}</div>
-      </div>
-      `),$('#subCategory').toggleClass("show")
+    
+     
+      
+         $('#subCategory').html(`
+         <div>
+          <div id="sideBarNames">${1}</div>
+         </div>
+         `).on('click', function(){productCategoryView()})
+
+       $('#subCategory').toggleClass("show")
+     
      };
    
 
@@ -211,7 +203,7 @@ $('#Categories').on("click",function(){
   else {sideBar()}});
 
 
-// The structure of the HTML will be different, on a later date
+//The structure of the HTML will be different, on a later date
 function cart()
 {
 $('#Content').html(`
@@ -229,7 +221,6 @@ $('#Content').html(`
 }
 
 
-//Loop later, use jquery each()
 //For showing the small shopping cart
 //Will add the ability to add to this cart and the main one with the database
 function cartMini(){
@@ -237,35 +228,12 @@ $('#CartMini').html(`
 
  <div id="CartMiniTitle">Cart</div>
  <div class="CartMiniItem">
-  <img src="./images/amdDeals.jpg" id="CartMiniImage">
-  <div class="CartMiniInfo">
-   <div>6600XT</div>
-   <input class="CartMiniQuantity" type="number" value="1"></input>
-   <div>Add more products</div>
-  </div>
-
-  <div id="RemoveItemButton"><button class="btn-danger">Remove</button></div>
-  <div class="CartMiniPrice">${500}€</div>
+ 
  
  </div>
 
- <div class="CartMiniItem">
- <img src="./images/amdDeals.jpg" id="CartMiniImage">
- <div  class="CartMiniInfo">
-
-  <div>6600XT</div>
-  <input class="CartMiniQuantity" type="number" value="1"></input>
-  <div>Add more products</div>
-
- </div>
- <div id="RemoveItemButton"><button class="btn-danger">Remove</button></div>
- <div class="CartMiniPrice">${2000}€</div>
-
-</div>
-</div>
-
-
- <div id="CartMiniTotalPrice">${2500}€</div>
+ 
+ <div id="CartMiniTotalPrice">${0}€</div>
 
  <div>Buttons</div>
 
@@ -276,12 +244,47 @@ $('#CartMini').html(`
 })
 };
 
-//This is for removing items from minicart
+//Function for adding product to cart
+function addtoMiniCartClicked(event){
+   var button = event.target
+   var productItem = $(button).parent()
+   var productName = $(productItem).children('#ProductWholeDetailViewName').text()
+   var productPrice = $(productItem).children('#ProductWholeDetailViewPrice').text()
+   var productImage = $(productItem).children('#DetailViewImages').attr('src')
   
+   
+var loop = [{name:productName, price:productPrice, image:productImage}]
+for (let i=0; i < loop.length; i++) 
+   {
+  
+   var miniCartItem= $('<div class="test"></div>').html(`
+   <img src="${loop[i].image}" id="CartMiniImage">
+   <div class="CartMiniInfo">
+     <div>${loop[i].name}</div>
+     <input class="CartMiniQuantity" type="number" value="1"></input>
+   </div>
+     <div id="RemoveItemButton"><button class="btn-danger">Remove</button></div>
+     <div class="CartMiniPrice">${loop[i].price}</div>
+  
+   `)
+   var miniItems = $('.CartMiniItem')[0]
+   $(miniItems).append(miniCartItem)
+   $(miniCartItem).find('.btn-danger').on('click', removeMiniCartItem)[0]
+   $(miniCartItem).find('.CartMiniQuantity').on('change', quantityChanged)[0]
+   updateMiniCartTotal()
+   }
+   }
+
+
+
+
+
+
+//This is for removing items from minicart
   function removeMiniCartItem(event)
   {
    var buttonClicked = event.target
-   $(buttonClicked).parent('#RemoveItemButton').parent('.CartMiniItem').remove()
+   $(buttonClicked).parent('#RemoveItemButton').parent('.test').remove()
    updateMiniCartTotal()
   }
 //This is for changing the quantity in the MiniCart
@@ -296,7 +299,7 @@ $('#CartMini').html(`
 // This is for updating the price for the cart
    function updateMiniCartTotal(){
          var miniCartItemContainer = $("#CartMini")[0]
-         var cartItems = $(miniCartItemContainer).children(".CartMiniItem")
+         var cartItems = $(miniCartItemContainer).children(".CartMiniItem").children('.test')
          var total = 0
          for(let i =0; i < cartItems.length; i++){
 
@@ -321,7 +324,7 @@ $('#Content').html(`
 
 <div id="LoginAndRegister"> 
  <div id="LoginAndRegisterBox">
-  <div onclick="frontPage()"> Go back </div>
+  <div id="GoBackButton"> Go back </div>
   <div>Register or login here</div>
   <div>Email: <input type="email"></input></div>
   <div>Password: <input type="password"></input> </div>
@@ -331,18 +334,46 @@ $('#Content').html(`
 
 
 `)
-}
-
-
-// This will be done after login, if I have the time for it.
-function searchBar()
-{
-
 
 }
 
+//starting the page
+//Onload
+$(function(){start()})
 
-//For testing
+async function start(){
+   frontPage();
+   cartMini();
+
+ $('#HeaderName').on('click', function(){frontPage();});
+
+
+   //RemoveButton
+   var removeButton = $('.btn-danger')
+   for (let i=0; i < removeButton.length; i++)
+   {
+    var button = removeButton[i]
+    $(button).on('click', removeMiniCartItem)
+   }
+   //Change quantity on miniCart
+   var quantityInput = $('.CartMiniQuantity')
+   for (let i=0; i < quantityInput.length; i++){
+
+    var input = quantityInput[i]
+
+    $(input).on('change',quantityChanged)
+
+   }
+    //Add to minicart
+    var addtoMiniCart = $('#AddToCartButton')
+    for (let i=0; i < addtoMiniCart.length; i++){
+         var button = addtoMiniCart[i]
+         $(button).on('click', addtoMiniCartClicked)
+    }
+}
+
+
+//For testing, remove when database done
 const category = 
     [    
      {
@@ -371,6 +402,7 @@ const category =
    }
     ]
 
+//For testing, remove when database done
 const productsTest = [{id:1,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
 {id:2,Name:"Different text here", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
 {id:3,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
@@ -399,7 +431,7 @@ const productsTest = [{id:1,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Pric
 
 ]
 
-
+//For testing, remove when database done
 const productsTest2 = [{id:1,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
 {id:2,Name:"This should change if pressed", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
 {id:3,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
@@ -426,7 +458,6 @@ const productsTest2 = [{id:1,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Pri
 {id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
 {id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"}
 ]
-
 
 
 
