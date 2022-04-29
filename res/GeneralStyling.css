@@ -63,7 +63,7 @@ body{width:50%; margin:auto;display: flex;flex-direction: column; min-width: 110
         height: 450px; overflow-y:auto;
     }
 #CartMiniTitle{padding:10px; border-bottom: 1px solid black; margin-bottom:5px}
-.CartMiniItem{text-align: center; display:flex; padding:2px; margin-bottom:20px}
+.CartMiniItem{text-align: center; display:flex; flex-direction: column ;padding:2px; margin-bottom:20px}
 #CartMiniImage{width:130px}
 #CartMiniTotalPrice{border-top:1px solid black; padding-top:20px}
 

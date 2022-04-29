@@ -21,6 +21,12 @@ function start(){
     $(input).on('change',quantityChanged)
 
    }
+    //Add to minicart
+    var addtoMiniCart = $('#AddToCartButton')
+    for (let i=0; i < addtoMiniCart.length; i++){
+         var button = addtoMiniCart[i]
+         $(button).on('click', addtoMiniCartClicked)
+    }
 }
 
 
@@ -93,7 +99,7 @@ $('#Content').html(`
 function productCategoryView(CategoryClick)
 {
 $('#Content').html(`
-
+   <div onclick="start()"> Go back</div>
    <div id="CategoryTitle">${CategoryClick}</div>
 
    <div id="CategoryProducts">
@@ -111,7 +117,7 @@ $('#Content').html(`
       <div id="CategoryInfo">${productsTest2[i].Name}</div>
       <div id="CategoryInfo">${productsTest2[i].Info}</div> 
       <div id="CategoryInfo">Availability:${productsTest2[i].id}</div> 
-      <div id="CategoryInfo">Price:${productsTest2[i].Price}€</div>   
+      <div id="CategoryInfo">Price:${productsTest2[i].Price}</div>   
     </div>
         ` )
        $(Category).on('click',function(){productDetailView(productsTest2[i])});
@@ -127,18 +133,17 @@ $('#Content').html(`
 function productDetailView(product)
 {
 
-
    $('#Content').html(`
+   <div onclick="start()"> Go back</div>
    <div id="ProductWholeDetailView"> 
-    <img src="${product.Image}" id="DetailViewIamges">
-      <div>
-       <div>${product.Name}</div>
-      </div>
+    <img src="${product.Image} "id="DetailViewImages">
+     
+       <div id="ProductWholeDetailViewName">${product.Name}</div>
+    
 
-      <div>
-       <div>Price: ${product.Price}€ </div>
-       <div id="AddToCartButton"><button>Add to cart</button></div>
-      </div>
+       <div id="ProductWholeDetailViewPrice">${product.Price}€</div>
+      <button id="AddToCartButton">Add to cart</button>
+      
     </div>
   <div id="ProductInfoButtons">
    <div id="ProductInfoButton" onclick="productInfoAreaClick()">Info</div>
@@ -153,7 +158,16 @@ function productDetailView(product)
 
    `
    );
+
+     //Add to minicart
+     var addtoMiniCart = $('#AddToCartButton')
+     for (let i=0; i < addtoMiniCart.length; i++){
+          var button = addtoMiniCart[i]
+          $(button).on('click', addtoMiniCartClicked)
+     }
+     
 }
+
 
 function productInfoAreaClick()
 {
@@ -240,35 +254,12 @@ $('#CartMini').html(`
 
  <div id="CartMiniTitle">Cart</div>
  <div class="CartMiniItem">
-  <img src="./images/amdDeals.jpg" id="CartMiniImage">
-  <div class="CartMiniInfo">
-   <div>6600XT</div>
-   <input class="CartMiniQuantity" type="number" value="1"></input>
-   <div>Add more products</div>
-  </div>
-
-  <div id="RemoveItemButton"><button class="btn-danger">Remove</button></div>
-  <div class="CartMiniPrice">${500}€</div>
+ 
  
  </div>
 
- <div class="CartMiniItem">
- <img src="./images/amdDeals.jpg" id="CartMiniImage">
- <div  class="CartMiniInfo">
-
-  <div>6600XT</div>
-  <input class="CartMiniQuantity" type="number" value="1"></input>
-  <div>Add more products</div>
-
- </div>
- <div id="RemoveItemButton"><button class="btn-danger">Remove</button></div>
- <div class="CartMiniPrice">${2000}€</div>
-
-</div>
-</div>
-
-
- <div id="CartMiniTotalPrice">${2500}€</div>
+ 
+ <div id="CartMiniTotalPrice">${0}€</div>
 
  <div>Buttons</div>
 
@@ -279,12 +270,47 @@ $('#CartMini').html(`
 })
 };
 
-//This is for removing items from minicart
+
+function addtoMiniCartClicked(event){
+   var button = event.target
+   var productItem = $(button).parent()
+   var productName = $(productItem).children('#ProductWholeDetailViewName').text()
+   var productPrice = $(productItem).children('#ProductWholeDetailViewPrice').text()
+   var productImage = $(productItem).children('#DetailViewImages').attr('src')
   
+   
+   var loop = [{name:productName, price:productPrice, image:productImage}]
+for (let i=0; i < loop.length; i++) 
+   {
+  
+   var miniCartItem= $('<div class="test"></div>').html(`
+   <img src="${loop[i].image}" id="CartMiniImage">
+   <div class="CartMiniInfo">
+     <div>${loop[i].name}</div>
+     <input class="CartMiniQuantity" type="number" value="1"></input>
+   </div>
+     <div id="RemoveItemButton"><button class="btn-danger">Remove</button></div>
+     <div class="CartMiniPrice">${loop[i].price}</div>
+  
+   `)
+   var miniItems = $('.CartMiniItem')[0]
+   $(miniItems).append(miniCartItem)
+   $(miniCartItem).find('.btn-danger').on('click', removeMiniCartItem)[0]
+   $(miniCartItem).find('.CartMiniQuantity').on('change', quantityChanged)[0]
+   updateMiniCartTotal()
+   }
+   }
+
+
+
+
+
+
+//This is for removing items from minicart
   function removeMiniCartItem(event)
   {
    var buttonClicked = event.target
-   $(buttonClicked).parent('#RemoveItemButton').parent('.CartMiniItem').remove()
+   $(buttonClicked).parent('#RemoveItemButton').parent('.test').remove()
    updateMiniCartTotal()
   }
 //This is for changing the quantity in the MiniCart
@@ -299,7 +325,7 @@ $('#CartMini').html(`
 // This is for updating the price for the cart
    function updateMiniCartTotal(){
          var miniCartItemContainer = $("#CartMini")[0]
-         var cartItems = $(miniCartItemContainer).children(".CartMiniItem")
+         var cartItems = $(miniCartItemContainer).children(".CartMiniItem").children('.test')
          var total = 0
          for(let i =0; i < cartItems.length; i++){
 
