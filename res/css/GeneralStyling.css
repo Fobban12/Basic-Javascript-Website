@@ -4,6 +4,7 @@ body{width:50%; margin:auto;display: flex;flex-direction: column; min-width: 110
    
 #Header{background-color: whitesmoke; color: black; border:1px; padding:20px;display:flex; justify-content:space-between; border-radius: 15px;}
 #HeaderInfo{padding:10px}
+#HeaderName{padding:10px}
 
 
 

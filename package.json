@@ -21,6 +21,7 @@
     "open": "^8.4.0",
     "pg": "^8.7.3"
   },
+  
   "terminal.integrated.profiles.windows": {
     "PowerShell": {
       "source": "PowerShell",

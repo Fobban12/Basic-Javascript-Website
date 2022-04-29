@@ -1,33 +1,3 @@
-//For starting the page.
-
-function start(){
-   frontPage();
-   cartMini();
-
-
-   //RemoveButton
-   var removeButton = $('.btn-danger')
-   for (let i=0; i < removeButton.length; i++)
-   {
-    var button = removeButton[i]
-    $(button).on('click', removeMiniCartItem)
-   }
-   //Change quantity on miniCart
-   var quantityInput = $('.CartMiniQuantity')
-   for (let i=0; i < quantityInput.length; i++){
-
-    var input = quantityInput[i]
-
-    $(input).on('change',quantityChanged)
-
-   }
-    //Add to minicart
-    var addtoMiniCart = $('#AddToCartButton')
-    for (let i=0; i < addtoMiniCart.length; i++){
-         var button = addtoMiniCart[i]
-         $(button).on('click', addtoMiniCartClicked)
-    }
-}
 
 
 
@@ -99,7 +69,7 @@ $('#Content').html(`
 function productCategoryView(CategoryClick)
 {
 $('#Content').html(`
-   <div onclick="start()"> Go back</div>
+   <div id="GoBackButton"> Go back</div>
    <div id="CategoryTitle">${CategoryClick}</div>
 
    <div id="CategoryProducts">
@@ -107,7 +77,7 @@ $('#Content').html(`
    </div>
    `
    );
-
+   $('#GoBackButton').on('click', function(){frontPage()})
 
    for (let i=0; i < productsTest2.length; i++)
    {
@@ -127,6 +97,7 @@ $('#Content').html(`
 
 }
 
+
 // A loop here, and the data should come from the pressed product ID tree: Category -> SubCategory -> Specific product
 // The structure of the HTML will be different, on a later date
 //Loop should be here, remove this later when done
@@ -134,7 +105,7 @@ function productDetailView(product)
 {
 
    $('#Content').html(`
-   <div onclick="start()"> Go back</div>
+   <div id="GoBackButton"> Go back</div>
    <div id="ProductWholeDetailView"> 
     <img src="${product.Image} "id="DetailViewImages">
      
@@ -158,7 +129,7 @@ function productDetailView(product)
 
    `
    );
-
+   $('#GoBackButton').on('click', function(){frontPage()})
      //Add to minicart
      var addtoMiniCart = $('#AddToCartButton')
      for (let i=0; i < addtoMiniCart.length; i++){
@@ -187,7 +158,7 @@ function sideBar(){
     for (let i=0; i < category.length; i++) 
     {
        let CategoryPrint = $('<div></div>').html(`
-        <div id="sideBarNames"> <span onclick="productCategoryView()">${category[i].Name}</span> </div>
+        <div id="sideBarNames"> <span>${category[i].Name}</span> </div>
       
          ` )
       let CategoryArrow = $('<div></div>').html(`<button id="categoryArrow" > > </button>`)
@@ -208,13 +179,17 @@ function sideBar(){
 
    function subCategory()
    {
-      $('#subCategory').html(`
-      <div>
-       <div id="sideBarNames" onclick="productCategoryView()">${category[1].Name}</div>
-       <div id="sideBarNames" onclick="productCategoryView()">${category[0].Name}</div>
-       <div id="sideBarNames" onclick="productCategoryView()">${category[2].Name}</div>
-      </div>
-      `),$('#subCategory').toggleClass("show")
+    
+     
+      
+         $('#subCategory').html(`
+         <div>
+          <div id="sideBarNames">${1}</div>
+         </div>
+         `).on('click', function(){productCategoryView()})
+
+       $('#subCategory').toggleClass("show")
+     
      };
    
 
@@ -349,7 +324,7 @@ $('#Content').html(`
 
 <div id="LoginAndRegister"> 
  <div id="LoginAndRegisterBox">
-  <div onclick="frontPage()"> Go back </div>
+  <div id="GoBackButton"> Go back </div>
   <div>Register or login here</div>
   <div>Email: <input type="email"></input></div>
   <div>Password: <input type="password"></input> </div>
@@ -359,14 +334,42 @@ $('#Content').html(`
 
 
 `)
+
 }
 
+//starting the page
+//Onload
+$(function(){start()})
 
-// This will be done after login, if I have the time for it.
-function searchBar()
-{
+async function start(){
+   frontPage();
+   cartMini();
+
+ $('#HeaderName').on('click', function(){frontPage();});
 
 
+   //RemoveButton
+   var removeButton = $('.btn-danger')
+   for (let i=0; i < removeButton.length; i++)
+   {
+    var button = removeButton[i]
+    $(button).on('click', removeMiniCartItem)
+   }
+   //Change quantity on miniCart
+   var quantityInput = $('.CartMiniQuantity')
+   for (let i=0; i < quantityInput.length; i++){
+
+    var input = quantityInput[i]
+
+    $(input).on('change',quantityChanged)
+
+   }
+    //Add to minicart
+    var addtoMiniCart = $('#AddToCartButton')
+    for (let i=0; i < addtoMiniCart.length; i++){
+         var button = addtoMiniCart[i]
+         $(button).on('click', addtoMiniCartClicked)
+    }
 }
 
 
@@ -455,7 +458,6 @@ const productsTest2 = [{id:1,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Pri
 {id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
 {id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"}
 ]
-
 
 
 

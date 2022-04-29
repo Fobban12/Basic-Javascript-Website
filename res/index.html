@@ -1,27 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js' type='text/javascript'>
-    </script>
-    <link rel="stylesheet" href="./GeneralStyling.css">
-    <link rel="stylesheet" href="./mainPage.css">
-    <link rel="stylesheet" href="./CategoryView.css">
-    <link rel="stylesheet" href="./DetailView.css">
-    <link rel="stylesheet" href="./CartStyling.css">
-
+    <script src="./scripts.js" type="module"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./css/CartStyling.css">
+    <link rel="stylesheet" href="./css/CategoryView.css">
+    <link rel="stylesheet" href="./css/DetailView.css">
+    <link rel="stylesheet" href="./css/GeneralStyling.css">
+    <link rel="stylesheet" href="./css/mainPage.css">
     
   </head>
 
-  <body onload="start()" > 
+  <body> 
   <div>
     <div id="Header">
-
       <button id="Categories" >Categories</button>
-      <a id="HeaderInfo" onclick="start()">Liernia</a>
+      <a id="HeaderName">Liernia</a>
       <input id="HeaderInfo" type="text" placeholder="Search">
-      <a id="HeaderInfo" onclick="login()">Login</a>
+      <a id="HeaderInfo">Login</a>
       <div id="CartInfo" >Cart <div id="CartMini"></div></div>
-      
     </div>
     
     
@@ -29,7 +26,7 @@
     <div id="subCategory" class="sideBarDisplay"></div>
     <div id="Content"></div> 
     <div id="Footer"> <a>About us</a></div>
-    <script src="./scripts.js"></script>
   </div>
+  
   </body>
 </html>
