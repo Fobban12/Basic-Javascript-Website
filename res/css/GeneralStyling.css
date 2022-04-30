@@ -28,12 +28,6 @@ body{width:50%; margin:auto;display: flex;flex-direction: column; min-width: 110
         padding-top: 10px;
         border-bottom: 1px solid black;}
 #sideBarNames:hover{background-color:ghostwhite}
-#subCategory{position:absolute; 
-        background-color:white;
-        width: 175px;
-        text-align: center; 
-        border:1px solid;
-        margin-left: 176px;}
 #categoryArrow{float: right;
         padding-right: 11px;
         border: 1px solid black;
@@ -43,6 +37,12 @@ body{width:50%; margin:auto;display: flex;flex-direction: column; min-width: 110
         position: relative; 
         background-color: white;}
  #categoryArrow:hover{background-color: ghostwhite}
+ #subCategory{position:absolute; 
+        background-color:white;
+        width: 175px;
+        text-align: center; 
+        border:1px solid;
+        margin-left: 176px;}
 
 
    

@@ -1,5 +1,15 @@
+const api_url = 'http://localhost:4000/db'
+
+async function getapi (url){
+  
+   const res = await fetch(url)
+   var data = await res.json()
+   showHide(data)
+  
+}
 
 
+getapi(api_url);
 
 //Loop should be here, remove this later when done
 //Pictures should come from the database
@@ -146,15 +156,14 @@ $('#ProductInfoArea').html(`<div>test</div>`)
 }
 
 
-function sideBar(){
-
+function sideBar(data){
    $('#SideBar').html(`
     <div id="sideBarCSS">
    
     </div>
     
     `),$('#SideBar').toggleClass("show")
-
+   
     for (let i=0; i < category.length; i++) 
     {
        let CategoryPrint = $('<div></div>').html(`
@@ -163,13 +172,15 @@ function sideBar(){
          ` )
       let CategoryArrow = $('<div></div>').html(`<button id="categoryArrow" > > </button>`)
 
-      $(CategoryArrow).on('click',function(){subCategory()})
+      $(CategoryArrow).on('click',function(){subCategory(data)})
       $('#sideBarCSS').append(CategoryArrow)
       $(CategoryPrint).on('click',function(){productCategoryView(category[i].Name)})
       $('#sideBarCSS').append(CategoryPrint)
 
      
     }
+
+   
    };
 
 
@@ -177,30 +188,38 @@ function sideBar(){
    //This should show the right subcategories based from the category unique id, will be implemented later, will loop trough all the subcategories
    //The structure of the HTML will be different, on a later date
 
-   function subCategory()
+   function subCategory(data)
    {
-    
-     
+      $('#subCategory').html(`
+         <div id=test>
       
-         $('#subCategory').html(`
-         <div>
-          <div id="sideBarNames">${1}</div>
          </div>
-         `).on('click', function(){productCategoryView()})
+         `)
 
+      console.log(data)
+      for (let i=0; i < data.results.length; i++){
+         let test = $('<div></div>').html(`
+         <div>
+         <div id="sideBarNames">${data.results[i].username}</div>
+         </div>`)
+         $(test).on('click', function(){productCategoryView(data.results[i].username)})
+         $('#test').append(test) 
+
+          }
        $('#subCategory').toggleClass("show")
      
      };
    
 
 //Shows and hides the sidebar, and will also hide the subCategory if shown
-$('#Categories').on("click",function(){
+async function showHide(data){$('#Categories').on("click",function(){
    if ($('#subCategory').hasClass("show") == true)
    {
         $('#subCategory').toggleClass("show"); $('#SideBar').toggleClass("show")
 
    } 
-  else {sideBar()}});
+  else {sideBar(data)}});}
+
 
 
 //The structure of the HTML will be different, on a later date

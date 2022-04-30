@@ -7,13 +7,12 @@ const app = express();
 
 
 
-
 const port = process.env.PORT ||4000;
 
 app.use(express.static(__dirname + '/res'));
 
-//This is for testing the database in heroku or local
-app.get(__dirname +'/res', async (req, res) => {
+//This is for connecting
+app.get('/db', async (req, res) => {
     const { Pool } = require('pg');
     const pool = (() => {
 if (process.env.NODE_ENV !== 'production') {
@@ -33,11 +32,14 @@ if (process.env.NODE_ENV !== 'production') {
     });
 } })();
 
+
+
+//For testing the database tables
 try {
         const client = await pool.connect();
         const result = await client.query('SELECT user_id, username FROM accountstest;');
         const results = { 'results': (result) ? result.rows : null};
-        res.json(results);
+        res.json(results)
         client.release();
     }    
 catch (err) 
