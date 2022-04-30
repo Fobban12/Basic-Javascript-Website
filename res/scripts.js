@@ -1,3 +1,4 @@
+//Change this to the heroku one when publishing and do the database in heroku instead of local
 const api_url = 'http://localhost:4000/db'
 
 async function getapi (url){
