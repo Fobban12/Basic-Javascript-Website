@@ -33,13 +33,14 @@ if (process.env.NODE_ENV !== 'production') {
 } })();
 
 
-
 //For testing the database tables
 try {
         const client = await pool.connect();
-        const result = await client.query('SELECT user_id, username FROM accountstest;');
-        const results = { 'results': (result) ? result.rows : null};
-        res.json(results)
+        const result = await client.query('SELECT category_id, category_name FROM categories');
+        const test = await client.query('SELECT category_id, category_name FROM categories');
+        const results = { 'Categories': (result) ? result.rows : null};
+        const tests = { 'test': (test) ? test.rows : null}
+        res.json({results, tests})
         client.release();
     }    
 catch (err) 
