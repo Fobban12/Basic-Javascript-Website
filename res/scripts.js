@@ -1,15 +1,13 @@
 //Change this to the heroku one when publishing and do the database in heroku instead of local
-const api_url = 'http://localhost:4000/db'
+const api_url = 'https://salty-mountain-56006.herokuapp.com/db'
 
+//For getting the data as a json object from the server and the database.
 async function getapi (url){
   
    const res = await fetch(url)
    var data = await res.json()
    showHide(data)
-  
 }
-
-
 getapi(api_url);
 
 //Loop should be here, remove this later when done
@@ -151,10 +149,6 @@ function productDetailView(product)
 }
 
 
-function productInfoAreaClick()
-{
-$('#ProductInfoArea').html(`<div>test</div>`)
-}
 
 
 function sideBar(data){
@@ -165,22 +159,23 @@ function sideBar(data){
     
     `),$('#SideBar').toggleClass("show")
    
-    for (let i=0; i < category.length; i++) 
+
+    for (let i=0; i < data.Categories.length; i++) 
     {
        let CategoryPrint = $('<div></div>').html(`
-        <div id="sideBarNames"> <span>${category[i].Name}</span> </div>
+        <div id="sideBarNames"> <span>${data.Categories[i].category_name}</span> </div>
       
          ` )
       let CategoryArrow = $('<div></div>').html(`<button id="categoryArrow" > > </button>`)
 
-      $(CategoryArrow).on('click',function(){subCategory(data)})
+      $(CategoryArrow).on('click',function(){subCategory(data.Categories[i].subcategories)})
       $('#sideBarCSS').append(CategoryArrow)
-      $(CategoryPrint).on('click',function(){productCategoryView(category[i].Name)})
+      $(CategoryPrint).on('click',function(){productCategoryView(data.Categories[i].category_name)})
       $('#sideBarCSS').append(CategoryPrint)
 
      
     }
-
+   
    
    };
 
@@ -196,18 +191,20 @@ function sideBar(data){
       
          </div>
          `)
-
       console.log(data)
-      for (let i=0; i < data.results.length; i++){
+   
+   
+
+    for (let i = 0 ; i < data.length ; i++){
+         
          let test = $('<div></div>').html(`
          <div>
-         <div id="sideBarNames">${data.results[i].username}</div>
+         <div id="sideBarNames">${data[i]}</div>
          </div>`)
-         $(test).on('click', function(){productCategoryView(data.results[i].username)})
+         $(test).on('click', function(){productCategoryView(data[i])})
          $('#test').append(test) 
 
-          }
-       $('#subCategory').toggleClass("show")
+          } $('#subCategory').toggleClass("show")
      
      };
    
@@ -220,25 +217,6 @@ async function showHide(data){$('#Categories').on("click",function(){
 
    } 
   else {sideBar(data)}});}
-
-
-
-//The structure of the HTML will be different, on a later date
-function cart()
-{
-$('#Content').html(`
-
-
-<div id="CartTitle">Cart</div>
-<div id="WholeCart">
-<div id="CartProduct">
- <img src="./images/amdDeals.jpg" id="CartImage">
- <div>Stuff</div>
- <div>Stuff</div>
-</div>
-</div>
-`)
-}
 
 
 //For showing the small shopping cart
@@ -263,6 +241,8 @@ $('#CartMini').html(`
 .on('mouseout',function(){$('#CartMini').hide()
 })
 };
+
+
 
 //Function for adding product to cart
 function addtoMiniCartClicked(event){
@@ -294,11 +274,6 @@ for (let i=0; i < loop.length; i++)
    updateMiniCartTotal()
    }
    }
-
-
-
-
-
 
 //This is for removing items from minicart
   function removeMiniCartItem(event)
@@ -340,8 +315,6 @@ for (let i=0; i < loop.length; i++)
 function login()
 {
 $('#Content').html(`
-
-
 <div id="LoginAndRegister"> 
  <div id="LoginAndRegisterBox">
   <div id="GoBackButton"> Go back </div>
@@ -351,8 +324,6 @@ $('#Content').html(`
   <div>Login or register</div>
  </div>
 </div>
-
-
 `)
 
 }
@@ -394,35 +365,6 @@ async function start(){
 
 
 //For testing, remove when database done
-const category = 
-    [    
-     {
-      id:1,
-      Name:"Components"
-     },
-     {
-        id:2,
-        Name:"TV'S"
-     },
-     {
-        id:3,
-        Name:"Some stuff"
-     },
-     {
-      id:4,
-      Name:"Hello"
-   },
-   {
-      id:5,
-      Name:"Testing"
-   },
-   {
-      id:6,
-      Name:"The lenght"
-   }
-    ]
-
-//For testing, remove when database done
 const productsTest = [{id:1,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
 {id:2,Name:"Different text here", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
 {id:3,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
@@ -450,7 +392,6 @@ const productsTest = [{id:1,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Pric
 {id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"}
 
 ]
-
 //For testing, remove when database done
 const productsTest2 = [{id:1,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
 {id:2,Name:"This should change if pressed", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
