@@ -167,14 +167,14 @@ function sideBar(data){
          ` )
       let CategoryArrow = $('<div></div>').html(`<button id="categoryArrow" > > </button>`)
 
-      $(CategoryArrow).on('click',function(){subCategory(data)})
+      $(CategoryArrow).on('click',function(){subCategory(data.results.Categories[i].subcategories)})
       $('#sideBarCSS').append(CategoryArrow)
       $(CategoryPrint).on('click',function(){productCategoryView(data.results.Categories[i].category_name)})
       $('#sideBarCSS').append(CategoryPrint)
 
      
     }
-
+   
    
    };
 
@@ -190,18 +190,19 @@ function sideBar(data){
       
          </div>
          `)
-
       console.log(data)
-      for (let i=0; i < data.tests.test.length; i++){
+   
+
+    for (let i = 0 ; i < data.length ; i++){
+         
          let test = $('<div></div>').html(`
          <div>
-         <div id="sideBarNames">${data.tests.test[i].category_id}</div>
+         <div id="sideBarNames">${data[i]}</div>
          </div>`)
-         $(test).on('click', function(){productCategoryView(data.tests.test[i].category_id)})
+         $(test).on('click', function(){productCategoryView(data[i])})
          $('#test').append(test) 
 
-          }
-       $('#subCategory').toggleClass("show")
+          } $('#subCategory').toggleClass("show")
      
      };
    
