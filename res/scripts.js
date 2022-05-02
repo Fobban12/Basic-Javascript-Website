@@ -7,18 +7,18 @@ async function getapi (url){
    const res = await fetch(url)
    var data = await res.json()
    showHide(data)
+   start(data)
 }
 getapi(api_url);
 
-//Loop should be here, remove this later when done
 //Pictures should come from the database
-function frontPage(){
+function frontPage(data){
 $('#Content').html(`
    <div>
     <div id="Deals">
-     <img src="./images/amdDeals.jpg" id="DealPictures"></img>
-     <img src="./images/amdDeals.jpg" id="DealPictures"></img>
-     <img src="./images/amdDeals.jpg" id="DealPictures"></img>
+     <img src="./images/springSale.jpg" id="DealPictures"></img>
+     <img src="./images/sales.jpg" id="DealPictures"></img>
+     <img src="./images/summerSale.jpg" id="DealPictures"></img>
      <img src="./images/amdDeals.jpg" id="DealPictures"></img>
     </div>
    
@@ -34,38 +34,36 @@ $('#Content').html(`
    `
    );  
    //The next two loops are for showing the recommended and popular products by (tag??), by hand at the moment.
-   for (let i=0; i < productsTest.length; i++)
+   for (let i=0; i < data.Products.length; i++)
    {
    let productPopular = $("<div></div>").html(`
    <div id="Product">
-    <img src="${productsTest[i].Image}" id="ProductPictures">
-    <div>${productsTest[i].Name}</div>
-    <div>${productsTest[i].Info}</div>
-    <div>${productsTest[i].Info2}</div>
-    <div>${productsTest[i].Price}€</div>
+    <img src="${data.Products[i].allproducts_image}" id="ProductPictures">
+    <div>${data.Products[i].allproducts_name}</div>
+    <div>${data.Products[i].allproducts_info}</div>
+    <div>${data.Products[i].allproducts_price}€</div>
     </div>
      ` )
    
-   $(productPopular).on('click',function(){productDetailView(productsTest[i])})
+   $(productPopular).on('click',function(){productDetailView(data.Products[i])})
    $('#ProductsPopular').append(productPopular)
      
     }
     
 
 
-
-   for (let i=0; i < productsTest2.length; i++)
+   for (let i=0; i < data.Products.length; i++)
    {
+      let test = Math.floor(Math.random() * data.Products.length)
       let productRecommended = $('<div></div>').html(`
       <div id="Product">
-       <img src="${productsTest2[i].Image}" id="ProductPictures">
-       <div id=InfoText>${productsTest2[i].Name}</div>
-       <div id=InfoText>${productsTest2[i].Info}</div>
-       <div id=InfoText>${productsTest2[i].Info2}</div>
-       <div id=InfoText>${productsTest2[i].Price}€</div>
+       <img src="${data.Products[test].allproducts_image}" id="ProductPictures">
+       <div id=InfoText>${data.Products[test].allproducts_name}</div>
+       <div id=InfoText>${data.Products[test].allproducts_info}</div>
+       <div id=InfoText>${data.Products[test].allproducts_price}€</div>
        </div>
         ` )
-       $(productRecommended).on('click',function(){productDetailView(productsTest2[i])})
+       $(productRecommended).on('click',function(){productDetailView(data.Products[test])})
        $('#ProductsRecommended').append(productRecommended)
    }
  
@@ -73,33 +71,31 @@ $('#Content').html(`
 
 
 // Data that comes should be based on the pressed categorys unique ID, so in other words, it will show the items that the category ID is assigned to.
-//Loop should be here, remove this later when done
-// The structure of the HTML will be different, on a later date
-function productCategoryView(CategoryClick)
+function productCategoryView(CategoryName,data)
 {
+
+
 $('#Content').html(`
-   <div id="GoBackButton"> Go back</div>
-   <div id="CategoryTitle">${CategoryClick}</div>
+   <div id="CategoryTitle">${CategoryName}</div>
 
    <div id="CategoryProducts">
 
    </div>
    `
    );
-   $('#GoBackButton').on('click', function(){frontPage()})
+   
 
-   for (let i=0; i < productsTest2.length; i++)
+   for (let i=0; i < data.Products.length; i++)
    {
       let Category = $('<div></div>').html(`
       <div id ="CategoryProduct">
-      <img src="${productsTest2[i].Image}" id="CategoryImages"> 
-      <div id="CategoryInfo">${productsTest2[i].Name}</div>
-      <div id="CategoryInfo">${productsTest2[i].Info}</div> 
-      <div id="CategoryInfo">Availability:${productsTest2[i].id}</div> 
-      <div id="CategoryInfo">Price:${productsTest2[i].Price}</div>   
+      <img src="${data.Products[i].allproducts_image}" id="CategoryImages"> 
+      <div id="CategoryInfo">${data.Products[i].allproducts_name}</div>
+      <div id="CategoryInfo">${data.Products[i].allproducts_info}</div> 
+      <div id="CategoryInfo">Price:${data.Products[i].allproducts_price} €</div>   
     </div>
         ` )
-       $(Category).on('click',function(){productDetailView(productsTest2[i])});
+       $(Category).on('click',function(){productDetailView(data.Products[i])});
        $('#CategoryProducts').append(Category)
    }
 
@@ -114,32 +110,22 @@ function productDetailView(product)
 {
 
    $('#Content').html(`
-   <div id="GoBackButton"> Go back</div>
    <div id="ProductWholeDetailView"> 
-    <img src="${product.Image} "id="DetailViewImages">
+    <img src="${product.allproducts_image} "id="DetailViewImages">
      
-       <div id="ProductWholeDetailViewName">${product.Name}</div>
+       <div id="ProductWholeDetailViewName">${product.allproducts_name}</div>
     
 
-       <div id="ProductWholeDetailViewPrice">${product.Price}€</div>
+       <div id="ProductWholeDetailViewPrice">${product.allproducts_price}€</div>
       <button id="AddToCartButton">Add to cart</button>
       
     </div>
-  <div id="ProductInfoButtons">
-   <div id="ProductInfoButton" onclick="productInfoAreaClick()">Info</div>
-   <div id="ProductInfoButton" onclick="productInfoAreaClick()">Hello</div>
-   <div id="ProductInfoButton" onclick="productInfoAreaClick()">Hello</div>
-  </div>
-  <div id="ProductInfoArea">
-   <div>Test</div>
-   <div>Hello</div>
-   <div>Hello</div>
   </div>
 
    `
    );
-   $('#GoBackButton').on('click', function(){frontPage()})
-     //Add to minicart
+   
+   //Add to minicart
      var addtoMiniCart = $('#AddToCartButton')
      for (let i=0; i < addtoMiniCart.length; i++){
           var button = addtoMiniCart[i]
@@ -149,8 +135,7 @@ function productDetailView(product)
 }
 
 
-
-
+//Main sidebar here
 function sideBar(data){
    $('#SideBar').html(`
     <div id="sideBarCSS">
@@ -168,9 +153,9 @@ function sideBar(data){
          ` )
       let CategoryArrow = $('<div></div>').html(`<button id="categoryArrow" > > </button>`)
 
-      $(CategoryArrow).on('click',function(){subCategory(data.Categories[i].subcategories)})
+      $(CategoryArrow).on('click',function(){subCategory(data.Categories[i].subcategories, data)})
       $('#sideBarCSS').append(CategoryArrow)
-      $(CategoryPrint).on('click',function(){productCategoryView(data.Categories[i].category_name)})
+      $(CategoryPrint).on('click',function(){productCategoryView(data.Categories[i].category_name, data)})
       $('#sideBarCSS').append(CategoryPrint)
 
      
@@ -181,31 +166,25 @@ function sideBar(data){
 
 
 
-   //This should show the right subcategories based from the category unique id, will be implemented later, will loop trough all the subcategories
+   //This should show the right subcategories based from the category unique id, will loop trough all the subcategories //This just comes from the data array from the category now!!!
    //The structure of the HTML will be different, on a later date
-
-   function subCategory(data)
+   function subCategory(name,data)
    {
       $('#subCategory').html(`
          <div id=test>
       
          </div>
          `)
-      console.log(data)
-   
    
 
-    for (let i = 0 ; i < data.length ; i++){
-         
-         let test = $('<div></div>').html(`
-         <div>
-         <div id="sideBarNames">${data[i]}</div>
+    for (let i = 0 ; i < name.length ; i++){
+         let category = $('<div></div>').html(`
+         <div class="subCategory">
+         <div id="sideBarNames">${name[i]}</div>
          </div>`)
-         $(test).on('click', function(){productCategoryView(data[i])})
-         $('#test').append(test) 
-
+         $('#test').append(category) 
+         $(category).on('click', function(){productCategoryView(name[i],data)})
           } $('#subCategory').toggleClass("show")
-     
      };
    
 
@@ -220,7 +199,6 @@ async function showHide(data){$('#Categories').on("click",function(){
 
 
 //For showing the small shopping cart
-//Will add the ability to add to this cart and the main one with the database
 function cartMini(){
 $('#CartMini').html(`
 
@@ -310,33 +288,15 @@ for (let i=0; i < loop.length; i++)
    }
 
 
-//The structure of the HTML will be slightly different, on a later date
-//The actual login and registaration will be done later, if done at all
-function login()
-{
-$('#Content').html(`
-<div id="LoginAndRegister"> 
- <div id="LoginAndRegisterBox">
-  <div id="GoBackButton"> Go back </div>
-  <div>Register or login here</div>
-  <div>Email: <input type="email"></input></div>
-  <div>Password: <input type="password"></input> </div>
-  <div>Login or register</div>
- </div>
-</div>
-`)
-
-}
 
 //starting the page
 //Onload
-$(function(){start()})
 
-async function start(){
-   frontPage();
+async function start(data){
+   frontPage(data);
    cartMini();
 
- $('#HeaderName').on('click', function(){frontPage();});
+ $('#HeaderName').on('click', function(){frontPage(data);});
 
 
    //RemoveButton

@@ -17,16 +17,21 @@
     margin-bottom:20px; 
     display: flex; 
     justify-content: space-between; 
-    overflow-x:auto}
+    overflow-x:auto;
+    overflow-y:hidden}
 #ProductsRecommended{ margin-top:20px;  
         margin-bottom:20px; 
         display: flex; 
         justify-content: space-between; 
-        overflow-x:auto}
+        overflow-x:auto;
+        overflow-y:hidden}
 
-#Product{padding:13px;
-     background-color: ghostwhite;}
-#ProductPictures{width:390px;}
+#Product{padding: 20px;
+    background-color: ghostwhite;
+    height: 290px;}
+#ProductPictures{max-width: 320px;
+    max-height: 192px;
+    background: white;}
 #CategoryInfo{padding:20px; 
     align-self: center;}
 

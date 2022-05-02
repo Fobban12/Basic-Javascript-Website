@@ -36,8 +36,9 @@ if (process.env.NODE_ENV !== 'production') {
 //For testing the database tables
 try {
         const client = await pool.connect();
-        const result = await client.query('SELECT * FROM categories');
-        const results = { 'Categories': (result)  ? result.rows : null};
+        const result = await client.query('select  * FROM categories');
+        const product = await client.query('select  * FROM allproducts');
+        const results = { 'Categories': result  ? result.rows : null,'Products': product ? product.rows : null};
         res.json(results)
         client.release();
     }    
