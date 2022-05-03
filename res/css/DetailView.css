@@ -1,9 +1,18 @@
-#ProductWholeDetailView{border:1px solid;margin-top:20px;display:flex;}
+#ProductWholeDetailView{border: 1px solid;
+    display: flex;
+    margin: 20px;
+}
 
-#DetailViewImages{width:50%; margin:40px; margin-bottom: 130px;}
-
-
-#ProductInfoButtons{display:flex}
-#ProductInfoButton{padding:15px; border:1px solid; margin:20px}
-
-#ProductInfoArea{display:flex; border:1px solid; height:300px; margin-bottom: 30px;}
+#DetailViewImages{width: 50%;
+    margin: 40px;
+    border: 1px solid black;
+    margin-bottom: 84px;}
+    
+#ViewNameAndInfo{width:200px}
+#ViewPriceAndCart{padding:20px;margin-left: 179px;}
+#ProductWholeDetailViewPrice{color:darkgreen; font-weight:bold; font-size:20px; margin-top:260px}
+#AddToCartButton{background: #38559c;
+    color: white;
+    padding: 13px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 13px #38559c;}

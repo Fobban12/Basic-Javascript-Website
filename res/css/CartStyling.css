@@ -1,4 +1,23 @@
-#CartTitle{padding:20px; font-size:20px; font-weight:bold}
-#WholeCart{padding:50px; margin:30px; border:1px solid black}
-#CartProduct{display:flex; padding:20px; border:1px solid black; max-height: 200px; margin-bottom:20px}
-#CartImage{width:400px}
+#CartInfo{padding:10px; margin-right:70px}
+#CartMini{padding: 10px;
+        width: 300px;
+        border: 1px black solid;
+        border-radius:5px;
+        position: absolute;
+        display:none;
+        background-color:white;
+        height: 450px; overflow-y:auto;
+        color:black;
+        box-shadow: 0px 0px 20px #38559c;
+    }
+#CartMiniTitle{border-bottom: 1px solid black; margin-bottom:5px}
+.CartMiniItem{text-align: center; display:flex; flex-direction: column ;padding:2px; margin-bottom:20px}
+#CartMiniImage{width:130px}
+#CartMiniTotalPrice{border-top:1px solid black; padding-top:20px; color:darkgreen;}
+#CartMiniQuantity{margin-top:5px}
+#OrderButton{background-color:#38559c;color:white}
+.btn-danger{background-color:#38559c;color:white; margin-top:5px}
+#OrderButton:hover{box-shadow: 0px 0px 20px #38559c;}
+.btn-danger:hover{box-shadow: 0px 0px 20px #38559c;}
+.CartMiniPrice{color:darkgreen; font-weight:bold;font-size: 25px; margin-top:5px}
+#CartMiniImage{margin-top:20px}

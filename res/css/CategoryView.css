@@ -8,9 +8,15 @@
      border:1px solid black; 
      display:flex; 
      flex-direction: column;
-    margin-bottom:50px;
-overflow:auto;
-max-height: 1000px;}
-
-#CategoryProduct{margin-bottom:10px; border:1px solid black; display:flex}
-#CategoryImages{width:350px; padding: 30px;}
+     margin-bottom:50px;
+     overflow:auto;
+     max-height: 1000px;
+    }
+#CategoryProduct{margin-bottom:10px; 
+    border:1px solid black; 
+    display:flex}
+#CategoryProduct:hover{background-color: ghostwhite;}
+#CategoryImages{width:455px; 
+    padding: 30px;}
+#CategoryAllStuff{display:flex; flex-direction:column}
+#CategoryPrice{color:darkgreen; margin-bottom:20px; font-weight:bold; font-size:50px}
