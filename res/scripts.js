@@ -1,5 +1,5 @@
 //Change this to the heroku one when publishing and do the database in heroku instead of local
-const api_url = 'https://salty-mountain-56006.herokuapp.com/db'
+const api_url = 'http://localhost:4000/db'
 
 //For getting the data as a json object from the server and the database.
 async function getapi (url){
@@ -33,15 +33,16 @@ $('#Content').html(`
    </div>
    `
    );  
+
    //The next two loops are for showing the recommended and popular products by (tag??), by hand at the moment.
    for (let i=0; i < data.Products.length; i++)
    {
    let productPopular = $("<div></div>").html(`
    <div id="Product">
     <img src="${data.Products[i].allproducts_image}" id="ProductPictures">
-    <div>${data.Products[i].allproducts_name}</div>
-    <div>${data.Products[i].allproducts_info}</div>
-    <div>${data.Products[i].allproducts_price}€</div>
+    <h4>${data.Products[i].allproducts_name}</h4>
+    <div id="ProductInfo">${data.Products[i].allproducts_info}</div>
+    <div id="ProductPrice">${data.Products[i].allproducts_price}€</div>
     </div>
      ` )
    
@@ -49,22 +50,21 @@ $('#Content').html(`
    $('#ProductsPopular').append(productPopular)
      
     }
-    
-
-
+   
    for (let i=0; i < data.Products.length; i++)
    {
-      let test = Math.floor(Math.random() * data.Products.length)
-      let productRecommended = $('<div></div>').html(`
+      let Random = Math.floor(Math.random() * data.Products.length)
+      let productRecommended = $("<div></div>").html(`
       <div id="Product">
-       <img src="${data.Products[test].allproducts_image}" id="ProductPictures">
-       <div id=InfoText>${data.Products[test].allproducts_name}</div>
-       <div id=InfoText>${data.Products[test].allproducts_info}</div>
-       <div id=InfoText>${data.Products[test].allproducts_price}€</div>
+       <img src="${data.Products[Random].allproducts_image}" id="ProductPictures">
+       <h4>${data.Products[Random].allproducts_name}</h4>
+       <div id="ProductInfo">${data.Products[Random].allproducts_info}</div>
+       <div id="ProductPrice">${data.Products[Random].allproducts_price}€</div>
        </div>
         ` )
-       $(productRecommended).on('click',function(){productDetailView(data.Products[test])})
-       $('#ProductsRecommended').append(productRecommended)
+      
+      $(productRecommended).on('click',function(){productDetailView(data.Products[Random])})
+      $('#ProductsRecommended').append(productRecommended)
    }
  
 };
@@ -74,8 +74,7 @@ $('#Content').html(`
 function productCategoryView(CategoryName,data)
 {
 
-
-$('#Content').html(`
+  $('#Content').html(`
    <div id="CategoryTitle">${CategoryName}</div>
 
    <div id="CategoryProducts">
@@ -100,7 +99,7 @@ $('#Content').html(`
    }
 
 
-}
+};
 
 
 // A loop here, and the data should come from the pressed product ID tree: Category -> SubCategory -> Specific product
@@ -112,13 +111,23 @@ function productDetailView(product)
    $('#Content').html(`
    <div id="ProductWholeDetailView"> 
     <img src="${product.allproducts_image} "id="DetailViewImages">
-     
-       <div id="ProductWholeDetailViewName">${product.allproducts_name}</div>
-    
-
+     <div id="ViewNameAndInfo">
+       <h1 id="ProductWholeDetailViewName">${product.allproducts_name}</h1>
+       <h3>Info:</h3>
+       <h4 id="ProductWholeDetailViewInfo">- ${product.allproducts_info}</h4>
+       <h4>- More info can put here</h4>
+       <h4>- More info can put here</h4>
+       <h4>- More info can put here</h4>
+       <h4>- More info can put here</h4>
+       <h4>- More info can put here</h4>
+       <h4>- More info can put here</h4>
+       
+     </div>
+     <div id="ViewPriceAndCart">
        <div id="ProductWholeDetailViewPrice">${product.allproducts_price}€</div>
+       <h3>IN STOCK</h3>
       <button id="AddToCartButton">Add to cart</button>
-      
+      </div>
     </div>
   </div>
 
@@ -132,7 +141,7 @@ function productDetailView(product)
           $(button).on('click', addtoMiniCartClicked)
      }
      
-}
+};
 
 
 //Main sidebar here
@@ -143,50 +152,62 @@ function sideBar(data){
     </div>
     
     `),$('#SideBar').toggleClass("show")
-   
 
     for (let i=0; i < data.Categories.length; i++) 
     {
-       let CategoryPrint = $('<div></div>').html(`
-        <div id="sideBarNames"> <span>${data.Categories[i].category_name}</span> </div>
-      
-         ` )
+      let CategoryPrint = $('<div></div>').html(`
+       <div id="sideBarNames"> <span>${data.Categories[i].category_name}</span> </div> ` )
       let CategoryArrow = $('<div></div>').html(`<button id="categoryArrow" > > </button>`)
-
-      $(CategoryArrow).on('click',function(){subCategory(data.Categories[i].subcategories, data)})
+      $(CategoryArrow).on('click',function(){subCategory(data.Categories[i].subcategories, data) })
       $('#sideBarCSS').append(CategoryArrow)
-      $(CategoryPrint).on('click',function(){productCategoryView(data.Categories[i].category_name, data)})
+      $(CategoryPrint).on('click',function(){
+         if ($('#subCategory').hasClass("show") == true)
+         {
+            $('#subCategory').toggleClass("show"); $('#SideBar').toggleClass("show")
+            productCategoryView(data.Categories[i].category_name, data)
+         }
+         else{ 
+            $('#SideBar').toggleClass("show")
+            productCategoryView(data.Categories[i].category_name, data)}
+         
+      
+      
+      })
       $('#sideBarCSS').append(CategoryPrint)
-
-     
     }
    
    
    };
-
-
 
    //This should show the right subcategories based from the category unique id, will loop trough all the subcategories //This just comes from the data array from the category now!!!
    //The structure of the HTML will be different, on a later date
    function subCategory(name,data)
    {
       $('#subCategory').html(`
-         <div id=test>
+         <div id=sideBarSubCategory>
       
          </div>
          `)
-   
-
     for (let i = 0 ; i < name.length ; i++){
          let category = $('<div></div>').html(`
          <div class="subCategory">
          <div id="sideBarNames">${name[i]}</div>
          </div>`)
-         $('#test').append(category) 
-         $(category).on('click', function(){productCategoryView(name[i],data)})
+         $('#sideBarSubCategory').append(category) 
+         $(category).on('click', function(){
+         if ($('#subCategory').hasClass("show") == true)
+         {
+            $('#subCategory').toggleClass("show"); $('#SideBar').toggleClass("show")
+            productCategoryView(name[i],data)
+         }
+         else{ 
+            showHide(data)
+            productCategoryView(name[i],data)}
+         })
           } $('#subCategory').toggleClass("show")
      };
    
+
 
 //Shows and hides the sidebar, and will also hide the subCategory if shown
 async function showHide(data){$('#Categories').on("click",function(){
@@ -195,7 +216,7 @@ async function showHide(data){$('#Categories').on("click",function(){
         $('#subCategory').toggleClass("show"); $('#SideBar').toggleClass("show")
 
    } 
-  else {sideBar(data)}});}
+  else {sideBar(data)}});};
 
 
 //For showing the small shopping cart
@@ -204,20 +225,15 @@ $('#CartMini').html(`
 
  <div id="CartMiniTitle">Cart</div>
  <div class="CartMiniItem">
- 
- 
  </div>
-
- 
  <div id="CartMiniTotalPrice">${0}€</div>
-
- <div>Buttons</div>
-
- 
+ <button id="OrderButton">Order</button>
 `);$('#CartInfo').on('mouseover',function(){$('#CartMini')
 .show()})
 .on('mouseout',function(){$('#CartMini').hide()
 })
+$('#OrderButton').on('click',function(){OrderClicked()})
+
 };
 
 
@@ -225,14 +241,13 @@ $('#CartMini').html(`
 //Function for adding product to cart
 function addtoMiniCartClicked(event){
    var button = event.target
-   var productItem = $(button).parent()
-   var productName = $(productItem).children('#ProductWholeDetailViewName').text()
-   var productPrice = $(productItem).children('#ProductWholeDetailViewPrice').text()
-   var productImage = $(productItem).children('#DetailViewImages').attr('src')
-  
-   
-var loop = [{name:productName, price:productPrice, image:productImage}]
-for (let i=0; i < loop.length; i++) 
+   var productItem = $(button).parent().parent()
+   console.log(productItem)
+   var productName = $(productItem).find('#ProductWholeDetailViewName').text()
+   var productPrice = $(productItem).find('#ProductWholeDetailViewPrice').text()
+   var productImage = $(productItem).find('#DetailViewImages').attr('src')
+   var loop = [{name:productName, price:productPrice, image:productImage}]
+   for (let i=0; i < loop.length; i++) 
    {
   
    var miniCartItem= $('<div class="test"></div>').html(`
@@ -251,13 +266,13 @@ for (let i=0; i < loop.length; i++)
    $(miniCartItem).find('.CartMiniQuantity').on('change', quantityChanged)[0]
    updateMiniCartTotal()
    }
-   }
+   };
 
 //This is for removing items from minicart
   function removeMiniCartItem(event)
   {
    var buttonClicked = event.target
-   $(buttonClicked).parent('#RemoveItemButton').parent('.test').remove()
+   $(buttonClicked).parent().parent().remove()
    updateMiniCartTotal()
   }
 //This is for changing the quantity in the MiniCart
@@ -269,13 +284,27 @@ for (let i=0; i < loop.length; i++)
          updateMiniCartTotal()
      }
 
+//This is for ordering items
+function OrderClicked()
+{
+if($('.test').text() != ""){
+alert('Order Sent, thank you for your order')
+var cartItems = $('.CartMiniItem')[0]
+//Works but throws and error?
+while (cartItems.hasChildNodes){
+   cartItems.removeChild(cartItems.firstChild)
+   updateMiniCartTotal()
+}
+
+}}
+
+
 // This is for updating the price for the cart
    function updateMiniCartTotal(){
          var miniCartItemContainer = $("#CartMini")[0]
          var cartItems = $(miniCartItemContainer).children(".CartMiniItem").children('.test')
          var total = 0
          for(let i =0; i < cartItems.length; i++){
-
             var cartItem = cartItems[i]
             var priceElement = $(cartItem).children('.CartMiniPrice')[0]
             var quantityElement = $(cartItem).children('.CartMiniInfo').children('.CartMiniQuantity')[0]
@@ -322,66 +351,6 @@ async function start(data){
          $(button).on('click', addtoMiniCartClicked)
     }
 }
-
-
-//For testing, remove when database done
-const productsTest = [{id:1,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:2,Name:"Different text here", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:3,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:4,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:5,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:6,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:7,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"}
-
-]
-//For testing, remove when database done
-const productsTest2 = [{id:1,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:2,Name:"This should change if pressed", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:3,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:4,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:5,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:6,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:7,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"},
-{id:8,Name:"RX6600XT", Image:"./images/amdDeals.jpg", Price:450, Info:"A gpu"}
-]
-
-
-
 
 
 
