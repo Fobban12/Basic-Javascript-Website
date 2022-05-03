@@ -89,9 +89,16 @@ function productCategoryView(CategoryName,data)
       let Category = $('<div></div>').html(`
       <div id ="CategoryProduct">
       <img src="${data.Products[i].allproducts_image}" id="CategoryImages"> 
-      <div id="CategoryInfo">${data.Products[i].allproducts_name}</div>
-      <div id="CategoryInfo">${data.Products[i].allproducts_info}</div> 
-      <div id="CategoryInfo">Price:${data.Products[i].allproducts_price} €</div>   
+      <div id="CategoryAllStuff">
+      <h2 id="CategoryName">${data.Products[i].allproducts_name}</h2>
+      <h3>Info:</h3>
+      <h4 id="CategoryInfo">- ${data.Products[i].allproducts_info}</h4> 
+      <h4 id="CategoryInfo">- Other info, if added to the database</h4> 
+      <h4 id="CategoryInfo">- Other info, if added to the database</h4> 
+      <h4 id="CategoryInfo">- Other info, if added to the database</h4> 
+      <h3>Price:</h3>
+      <div id="CategoryPrice">${data.Products[i].allproducts_price}€</div>   
+      </div>
     </div>
         ` )
        $(Category).on('click',function(){productDetailView(data.Products[i])});
@@ -242,7 +249,6 @@ $('#OrderButton').on('click',function(){OrderClicked()})
 function addtoMiniCartClicked(event){
    var button = event.target
    var productItem = $(button).parent().parent()
-   console.log(productItem)
    var productName = $(productItem).find('#ProductWholeDetailViewName').text()
    var productPrice = $(productItem).find('#ProductWholeDetailViewPrice').text()
    var productImage = $(productItem).find('#DetailViewImages').attr('src')
@@ -250,7 +256,7 @@ function addtoMiniCartClicked(event){
    for (let i=0; i < loop.length; i++) 
    {
   
-   var miniCartItem= $('<div class="test"></div>').html(`
+   var miniCartItem= $('<div class="miniCartItem"></div>').html(`
    <img src="${loop[i].image}" id="CartMiniImage">
    <div class="CartMiniInfo">
      <div>${loop[i].name}</div>
@@ -287,8 +293,8 @@ function addtoMiniCartClicked(event){
 //This is for ordering items
 function OrderClicked()
 {
-if($('.test').text() != ""){
-alert('Order Sent, thank you for your order')
+if($('.miniCartItem').text() != ""){
+alert('Order sent to our database, thank you for your order.')
 var cartItems = $('.CartMiniItem')[0]
 //Works but throws and error?
 while (cartItems.hasChildNodes){
@@ -302,7 +308,7 @@ while (cartItems.hasChildNodes){
 // This is for updating the price for the cart
    function updateMiniCartTotal(){
          var miniCartItemContainer = $("#CartMini")[0]
-         var cartItems = $(miniCartItemContainer).children(".CartMiniItem").children('.test')
+         var cartItems = $(miniCartItemContainer).children(".CartMiniItem").children('.miniCartItem')
          var total = 0
          for(let i =0; i < cartItems.length; i++){
             var cartItem = cartItems[i]
