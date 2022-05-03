@@ -1,5 +1,5 @@
 //Change this to the heroku one when publishing and do the database in heroku instead of local
-const api_url = 'http://localhost:4000/db'
+const api_url = 'https://salty-mountain-56006.herokuapp.com/db'
 
 //For getting the data as a json object from the server and the database.
 async function getapi (url){
